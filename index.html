@@ -3,398 +3,379 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Metro vs. Arfiyato — Price Comparison for Greek Street Food</title>
+<title>Supplier Price Comparison — Metro vs. Arfiyato</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8f7f4; color: #2d2a26; line-height: 1.6; }
-  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-  .hero { background: linear-gradient(135deg, #1a3a5c 0%, #2d6a9f 100%); color: white; padding: 48px 0 40px; }
-  .hero h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 8px; }
-  .hero .subtitle { font-size: 1.1rem; opacity: 0.85; margin-bottom: 32px; }
-  section { padding: 40px 0; }
-  .section-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-  .section-desc { color: #666; margin-bottom: 24px; font-size: 0.95rem; }
-  .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
-  .badge-green { background: #e6f9ed; color: #1a7a3a; }
-  .badge-orange { background: #fff3e0; color: #b35c00; }
-  .badge-gray { background: #f0eeeb; color: #6b6560; }
-  .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
-  .card { background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: transform 0.2s; }
-  .card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
-  .card-img { height: 160px; background: #f5f3f0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-  .card-img img { max-height: 140px; max-width: 90%; object-fit: contain; }
-  .card-img .no-img { color: #bbb; font-size: 0.9rem; }
-  .card-body { padding: 18px 20px; }
-  .card-body h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
-  .price-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid #f0eeeb; font-size: 0.9rem; }
-  .price-row:last-child { border-bottom: none; }
-  .price-row .source { color: #888; }
-  .price-row .price { font-weight: 700; }
-  .price-row .price.winner { color: #1a7a3a; }
-  .price-row .price.loser { color: #b35c00; }
-  .savings-bar { margin-top: 12px; background: #e6f9ed; border-radius: 8px; padding: 8px 14px; text-align: center; font-weight: 700; color: #1a7a3a; font-size: 0.95rem; }
-  .savings-bar.af-wins { background: #fff3e0; color: #b35c00; }
-  .card-note { font-size: 0.8rem; color: #999; margin-top: 8px; font-style: italic; }
-  .summary-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.88rem; }
-  .summary-table th { background: #1a3a5c; color: white; padding: 10px 14px; text-align: left; font-weight: 600; }
-  .summary-table td { padding: 10px 14px; border-bottom: 1px solid #eee; }
-  .summary-table tr:hover { background: #f8f7f4; }
-  .summary-table .winner-cell { background: #e6f9ed; font-weight: 700; }
-  .summary-table .loser-cell { color: #999; }
-  .reco-box { background: white; border-radius: 14px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-top: 20px; }
-  .reco-step { display: flex; gap: 16px; margin-bottom: 16px; align-items: flex-start; }
-  .reco-num { width: 32px; height: 32px; border-radius: 50%; background: #1a3a5c; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
-  .reco-text { flex: 1; }
-  .reco-text strong { display: block; margin-bottom: 2px; }
-  .info-box { background: #e8f4fd; border-left: 4px solid #2d6a9f; border-radius: 8px; padding: 16px 20px; margin-top: 20px; }
-  .footer { text-align: center; padding: 32px 0; color: #aaa; font-size: 0.8rem; }
+  body { font-family: 'Inter', system-ui, sans-serif; background: #f8f9fa; color: #1a1a2e; line-height: 1.6; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  .header { padding: 48px 0 32px; border-bottom: 1px solid #e5e7eb; margin-bottom: 36px; }
+  .header h1 { font-size: 1.75rem; font-weight: 800; color: #111827; margin-bottom: 6px; }
+  .header .sub { font-size: 0.95rem; color: #6b7280; }
+
+  /* Overview strip */
+  .overview { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 36px; }
+  .ov-card { flex: 1; min-width: 200px; background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 20px; }
+  .ov-card .ov-num { font-size: 2rem; font-weight: 800; line-height: 1.2; }
+  .ov-card .ov-num.metro { color: #0369a1; }
+  .ov-card .ov-num.af { color: #b45309; }
+  .ov-card .ov-num.neutral { color: #6b7280; }
+  .ov-card .ov-label { font-size: 0.8rem; color: #6b7280; margin-top: 4px; font-weight: 500; }
+
+  /* Section headers */
+  section { margin-bottom: 40px; }
+  .sh { font-size: 1.15rem; font-weight: 700; color: #111827; margin-bottom: 4px; display: flex; align-items: center; gap: 10px; }
+  .pill { font-size: 0.72rem; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+  .pill-m { background: #e0f2fe; color: #0369a1; }
+  .pill-a { background: #fef3c7; color: #b45309; }
+  .pill-n { background: #f3f4f6; color: #6b7280; }
+  .sd { color: #6b7280; margin-bottom: 16px; font-size: 0.88rem; }
+
+  /* Product cards */
+  .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+  .card { background: #fff; border-radius: 10px; border: 1px solid #e5e7eb; overflow: hidden; transition: box-shadow 0.2s; }
+  .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+  .card-top { display: flex; align-items: center; gap: 12px; padding: 14px 16px 0; }
+  .card-top img { width: 52px; height: 52px; object-fit: contain; border-radius: 8px; background: #f9fafb; padding: 3px; }
+  .card-top .placeholder { width: 52px; height: 52px; border-radius: 8px; background: #f3f4f6; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: #9ca3af; text-align: center; line-height: 1.2; font-weight: 600; }
+  .card-top h3 { font-size: 0.9rem; font-weight: 700; flex: 1; color: #111827; }
+  .card-body { padding: 10px 16px 14px; }
+  .pr { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; font-size: 0.83rem; border-bottom: 1px solid #f3f4f6; }
+  .pr:last-of-type { border-bottom: none; }
+  .pr .src { color: #6b7280; }
+  .pr .val { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .pr .val.better { color: #047857; }
+  .pr .val.higher { color: #9ca3af; }
+  .sav { margin-top: 8px; text-align: center; padding: 6px 10px; border-radius: 8px; font-weight: 700; font-size: 0.88rem; }
+  .sav.metro { background: #ecfdf5; color: #047857; }
+  .sav.af { background: #fffbeb; color: #b45309; }
+  .card-note { font-size: 0.76rem; color: #9ca3af; margin-top: 6px; }
+
+  /* Arfiyato-only cards */
+  .af-only { background: #fff; border: 1px dashed #d1d5db; border-radius: 10px; padding: 16px; }
+  .af-only h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 6px; color: #111827; }
+  .af-alt { background: #f0fdf4; border-radius: 6px; padding: 8px 12px; font-size: 0.82rem; color: #047857; margin-top: 8px; }
+  .af-note { background: #f9fafb; border-radius: 6px; padding: 8px 12px; font-size: 0.82rem; color: #6b7280; margin-top: 8px; }
+
+  /* Summary table */
+  .tbl-wrap { overflow-x: auto; margin-top: 12px; border-radius: 10px; border: 1px solid #e5e7eb; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  th { background: #f9fafb; padding: 10px 14px; text-align: left; font-weight: 600; color: #6b7280; font-size: 0.73rem; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #e5e7eb; }
+  td { padding: 8px 14px; border-bottom: 1px solid #f3f4f6; }
+  tr:hover { background: #f9fafb; }
+  .tw { color: #047857; font-weight: 600; }
+  .ta { color: #b45309; font-weight: 600; }
+  .tn { color: #6b7280; }
+
+  /* Summary box */
+  .summary-box { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 28px; margin: 36px 0; }
+  .summary-box h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 16px; color: #111827; }
+  .sum-item { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .sum-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
+  .sum-dot.m { background: #0369a1; }
+  .sum-dot.a { background: #d97706; }
+  .sum-dot.n { background: #9ca3af; }
+  .sum-text { flex: 1; font-size: 0.9rem; color: #374151; }
+  .sum-text strong { color: #111827; }
+
+  .footer { text-align: center; padding: 36px 0; color: #9ca3af; font-size: 0.72rem; border-top: 1px solid #e5e7eb; margin-top: 20px; }
+
   @media (max-width: 700px) {
-    .hero h1 { font-size: 1.6rem; }
+    .header h1 { font-size: 1.4rem; }
     .products { grid-template-columns: 1fr; }
+    .overview { flex-direction: column; }
   }
 </style>
 </head>
 <body>
 
-<!-- ============ HERO ============ -->
-<div class="hero">
-  <div class="container">
-    <h1>Metro vs. Arfiyato — Price Comparison</h1>
-    <p class="subtitle">All 17 Arfiyato products checked · Price per kg/litre is decisive · As of March 2026</p>
-  </div>
-</div>
-
 <div class="container">
 
-<!-- ============ SECTION 1: METRO CHEAPER (9 products) ============ -->
+<!-- Header -->
+<div class="header">
+  <h1>Supplier Price Comparison</h1>
+  <p class="sub">Metro Lieferservice vs. Arfiyato Feinkost — 17 products, normalized per kg/litre, all prices netto</p>
+</div>
+
+<!-- Overview -->
+<div class="overview">
+  <div class="ov-card"><div class="ov-num metro">9</div><div class="ov-label">Products cheaper at Metro</div></div>
+  <div class="ov-card"><div class="ov-num af">4</div><div class="ov-label">Products cheaper at Arfiyato</div></div>
+  <div class="ov-card"><div class="ov-num neutral">4</div><div class="ov-label">Only available at Arfiyato</div></div>
+</div>
+
+<!-- SECTION 1: Metro cheaper -->
 <section>
-  <div class="section-title">
-    <span>🟢</span> Metro is cheaper <span class="badge badge-green">9 products</span>
-  </div>
-  <p class="section-desc">You're overpaying at Arfiyato for these items. Metro alternatives offer the same or better price per kg.</p>
+  <div class="sh">Metro is the better price <span class="pill pill-m">9 products</span></div>
+  <p class="sd">Comparable or identical products at lower per-unit cost.</p>
 
   <div class="products">
 
-    <!-- 1. Weinblätter -->
     <div class="card">
-      <div class="card-img">
-        <img src="https://cdn.metro-group.com/de/de_pim_36233001001_01.png" alt="Metro Weinblätter" loading="lazy">
-      </div>
-      <div class="card-body">
+      <div class="card-top">
+        <img src="https://cdn.metro-group.com/de/de_pim_36233001001_01.png" alt="Weinblätter">
         <h3>Weinblätter in Salzlake</h3>
-        <div class="price-row"><span class="source">Arfiyato · Palirria 2 kg</span><span class="price loser">€30.00/kg</span></div>
-        <div class="price-row"><span class="source">Metro · Palirria 2 kg</span><span class="price winner">€6.03/kg</span></div>
-        <div class="savings-bar">−80% · Metro saves €47.94 per can</div>
-        <p class="card-note">Same product, same brand, same size!</p>
+      </div>
+      <div class="card-body">
+        <div class="pr"><span class="src">Arfiyato · Palirria 2 kg</span><span class="val higher">€30.00/kg</span></div>
+        <div class="pr"><span class="src">Metro · Palirria 2 kg</span><span class="val better">€6.03/kg</span></div>
+        <div class="sav metro">Metro −80%</div>
+        <div class="card-note">Same brand, same size.</div>
       </div>
     </div>
 
-    <!-- 2. Riesenbohnen -->
     <div class="card">
-      <div class="card-img">
-        <img src="https://cdn.metro-group.com/de/de_pim_36261001001_01.png" alt="Metro Riesenbohnen" loading="lazy">
-      </div>
-      <div class="card-body">
+      <div class="card-top">
+        <img src="https://cdn.metro-group.com/de/de_pim_36261001001_01.png" alt="Riesenbohnen">
         <h3>Riesenbohnen in Tomatensauce</h3>
-        <div class="price-row"><span class="source">Arfiyato · Palirria 2 kg</span><span class="price loser">€25.00/kg</span></div>
-        <div class="price-row"><span class="source">Metro · Palirria 850 g</span><span class="price winner">€6.26/kg</span></div>
-        <div class="savings-bar">−75% · Metro saves ~€37.48/kg</div>
-        <p class="card-note">Same brand! Smaller can, but much cheaper per kg.</p>
+      </div>
+      <div class="card-body">
+        <div class="pr"><span class="src">Arfiyato · Palirria 2 kg</span><span class="val higher">€25.00/kg</span></div>
+        <div class="pr"><span class="src">Metro · Palirria 850 g</span><span class="val better">€6.26/kg</span></div>
+        <div class="sav metro">Metro −75%</div>
+        <div class="card-note">Same brand. Smaller can, lower per-kg cost.</div>
       </div>
     </div>
 
-    <!-- 3. Champignons -->
     <div class="card">
-      <div class="card-img">
-        <img src="https://cdn.metro-group.com/de/de_pim_21025001001_01.png" alt="Metro Chef Champignons" loading="lazy">
-      </div>
-      <div class="card-body">
-        <h3>Champignons 1. Wahl (Dose)</h3>
-        <div class="price-row"><span class="source">Arfiyato · 5 L can</span><span class="price loser">€6.80/L</span></div>
-        <div class="price-row"><span class="source">Metro · METRO Chef 3.1 L</span><span class="price winner">€3.44/L</span></div>
-        <div class="savings-bar">−49% · Metro saves ~€16.60 per 5 L equivalent</div>
-        <p class="card-note">Season & grill them yourself — fresher taste, half the cost.</p>
-      </div>
-    </div>
-
-    <!-- 4. Florini Paprika -->
-    <div class="card">
-      <div class="card-img">
-        <span class="no-img">No Metro image available</span>
-      </div>
-      <div class="card-body">
-        <h3>Paprikastreifen / Florini Paprika</h3>
-        <div class="price-row"><span class="source">Arfiyato · Florini 2.65 L</span><span class="price loser">€4.90/L</span></div>
-        <div class="price-row"><span class="source">Metro · ARO Paprika 2.65 L</span><span class="price winner">€2.41/L</span></div>
-        <div class="savings-bar">−51% · Metro saves €6.60 per can</div>
-        <p class="card-note">ARO Paprikastreifen — same size, half the price.</p>
-      </div>
-    </div>
-
-    <!-- 5. Auberginen -->
-    <div class="card">
-      <div class="card-img">
-        <img src="https://cdn.metro-group.com/de/de_pim_308947001001_01.png" alt="Metro Auberginen" loading="lazy">
-      </div>
-      <div class="card-body">
-        <h3>Gegrillte Auberginen</h3>
-        <div class="price-row"><span class="source">Arfiyato · 2.4 kg</span><span class="price loser">€9.16/kg</span></div>
-        <div class="price-row"><span class="source">Metro · METRO Chef 1.6 kg</span><span class="price winner">€4.81/kg</span></div>
-        <div class="savings-bar">−47% · Metro saves ~€10.44 per comparable quantity</div>
-      </div>
-    </div>
-
-    <!-- 6. Balsamico/Borettane Zwiebeln -->
-    <div class="card">
-      <div class="card-img">
-        <img src="https://cdn.metro-group.com/de/de_pim_297095001001_02.png" alt="Metro Borettane Zwiebeln" loading="lazy">
-      </div>
-      <div class="card-body">
-        <h3>Balsamico-Zwiebeln / Borettane</h3>
-        <div class="price-row"><span class="source">Arfiyato · ~1.7 L can</span><span class="price loser">€5.88/L</span></div>
-        <div class="price-row"><span class="source">Metro · METRO Chef 1.7 L</span><span class="price winner">€4.39/L</span></div>
-        <div class="savings-bar">−25% · Metro saves €2.53 per can</div>
-      </div>
-    </div>
-
-    <!-- 7. Kalamata Oliven -->
-    <div class="card">
-      <div class="card-img">
-        <img src="https://cdn.metro-group.com/de/de_pim_297091001001_01.png" alt="Metro Kalamata Oliven" loading="lazy">
-      </div>
-      <div class="card-body">
+      <div class="card-top">
+        <img src="https://cdn.metro-group.com/de/de_pim_297091001001_01.png" alt="Kalamon Oliven">
         <h3>Kalamon / Kalamata Oliven</h3>
-        <div class="price-row"><span class="source">Arfiyato · ~5 kg</span><span class="price loser">~€13.40/kg</span></div>
-        <div class="price-row"><span class="source">Metro · METRO Chef 4.25 L Dose</span><span class="price winner">€5.52/L</span></div>
-        <div class="savings-bar">−59% · Metro saves massively — €23.46 for 4.25 L</div>
+      </div>
+      <div class="card-body">
+        <div class="pr"><span class="src">Arfiyato · ~5 kg</span><span class="val higher">~€13.40/kg</span></div>
+        <div class="pr"><span class="src">Metro · METRO Chef 4.25 L Dose</span><span class="val better">€5.52/L</span></div>
+        <div class="sav metro">Metro −59%</div>
+        <div class="card-note">€23.46 netto. Sonnengereift, mit Stein.</div>
       </div>
     </div>
 
-    <!-- 8. Artischocken -->
     <div class="card">
-      <div class="card-img">
-        <img src="https://cdn.metro-group.com/de/de_pim_296948001001_02.png" alt="Metro Artischocken" loading="lazy">
+      <div class="card-top">
+        <div class="placeholder">ARO<br>2.65 L</div>
+        <h3>Paprikastreifen / Florini Paprika</h3>
       </div>
       <div class="card-body">
+        <div class="pr"><span class="src">Arfiyato · Florini 2.65 L</span><span class="val higher">€4.90/L</span></div>
+        <div class="pr"><span class="src">Metro · ARO Paprika 2.65 L</span><span class="val better">€2.41/L</span></div>
+        <div class="sav metro">Metro −51%</div>
+        <div class="card-note">Same size can.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <img src="https://cdn.metro-group.com/de/de_pim_280714001001_01.png" alt="Champignons">
+        <h3>Champignons 1. Wahl ganz</h3>
+      </div>
+      <div class="card-body">
+        <div class="pr"><span class="src">Arfiyato · 5 L Dose</span><span class="val higher">€6.80/L</span></div>
+        <div class="pr"><span class="src">Metro · METRO Chef 3.1 L</span><span class="val better">€3.44/L</span></div>
+        <div class="sav metro">Metro −49%</div>
+        <div class="card-note">1. Wahl, ganze Champignons.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <img src="https://cdn.metro-group.com/de/de_pim_308947001001_01.png" alt="Auberginen">
+        <h3>Gegrillte Auberginen</h3>
+      </div>
+      <div class="card-body">
+        <div class="pr"><span class="src">Arfiyato · 2.4 kg</span><span class="val higher">€9.16/kg</span></div>
+        <div class="pr"><span class="src">Metro · METRO Chef 1.6 kg</span><span class="val better">€4.81/kg</span></div>
+        <div class="sav metro">Metro −47%</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="placeholder">ARO<br>935 ml</div>
+        <h3>Oliven gefüllt mit Paprika</h3>
+      </div>
+      <div class="card-body">
+        <div class="pr"><span class="src">Arfiyato · 10 kg Eimer</span><span class="val higher">€6.50/kg</span></div>
+        <div class="pr"><span class="src">Metro · ARO 935 ml</span><span class="val better">€3.54/kg</span></div>
+        <div class="sav metro">Metro −46%</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <img src="https://cdn.metro-group.com/de/de_pim_297095001001_02.png" alt="Borettane Zwiebeln">
+        <h3>Balsamico-Zwiebeln / Borettane</h3>
+      </div>
+      <div class="card-body">
+        <div class="pr"><span class="src">Arfiyato · ~1.7 L</span><span class="val higher">€5.88/L</span></div>
+        <div class="pr"><span class="src">Metro · METRO Chef 1.7 L</span><span class="val better">€4.39/L</span></div>
+        <div class="sav metro">Metro −25%</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <img src="https://cdn.metro-group.com/de/de_pim_296948001001_02.png" alt="Artischocken">
         <h3>Artischockenherzen</h3>
-        <div class="price-row"><span class="source">Arfiyato · ~2.65 L can</span><span class="price loser">€3.77/L</span></div>
-        <div class="price-row"><span class="source">Metro · METRO Chef 2.65 L</span><span class="price winner">€3.42/L</span></div>
-        <div class="savings-bar">−9% · Metro saves €0.93 per can (+ more content!)</div>
-      </div>
-    </div>
-
-    <!-- 9. Oliven mit Paprika (MOVED from Arfiyato section) -->
-    <div class="card">
-      <div class="card-img">
-        <span class="no-img">ARO · 935 ml jar</span>
       </div>
       <div class="card-body">
-        <h3>Grüne Oliven gefüllt mit Paprika</h3>
-        <div class="price-row"><span class="source">Arfiyato · 10 kg bucket</span><span class="price loser">€6.50/kg</span></div>
-        <div class="price-row"><span class="source">Metro · ARO 935 ml (900 g)</span><span class="price winner">€3.54/kg</span></div>
-        <div class="savings-bar">−46% · Metro saves €29.60 per 10 kg equivalent</div>
-        <p class="card-note">ARO olives stuffed with paprika paste — same purpose, half the price per kg.</p>
+        <div class="pr"><span class="src">Arfiyato · ~2.65 L</span><span class="val higher">€3.77/L</span></div>
+        <div class="pr"><span class="src">Metro · METRO Chef 2.65 L</span><span class="val better">€3.42/L</span></div>
+        <div class="sav metro">Metro −9%</div>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- ============ SECTION 2: ARFIYATO CHEAPER (4 products) ============ -->
+<!-- SECTION 2: Arfiyato cheaper -->
 <section>
-  <div class="section-title">
-    <span>🟠</span> Arfiyato is cheaper <span class="badge badge-orange">4 products</span>
-  </div>
-  <p class="section-desc">For these items, Arfiyato's bulk packaging wins — Metro and other suppliers can't compete on price per kg.</p>
+  <div class="sh">Arfiyato is the better price <span class="pill pill-a">4 products</span></div>
+  <p class="sd">Bulk packaging and specialty sourcing give Arfiyato the edge here.</p>
 
   <div class="products">
 
-    <!-- 10. Tahini -->
     <div class="card">
-      <div class="card-img">
-        <img src="https://cdn.metro-group.com/de/de_pim_77187001001_02.png" alt="Metro Tahini" loading="lazy">
-      </div>
-      <div class="card-body">
+      <div class="card-top">
+        <img src="https://cdn.metro-group.com/de/de_pim_77187001001_02.png" alt="Tahini">
         <h3>Tahini / Sesampaste</h3>
-        <div class="price-row"><span class="source">Arfiyato · 4 kg bucket</span><span class="price winner">€6.75/kg</span></div>
-        <div class="price-row"><span class="source">Metro · Doyal 1 kg bucket</span><span class="price loser">€16.74/kg</span></div>
-        <div class="savings-bar af-wins">Arfiyato −60% · saves €39.96 on 4 kg</div>
+      </div>
+      <div class="card-body">
+        <div class="pr"><span class="src">Arfiyato · 4 kg Eimer</span><span class="val better">€6.75/kg</span></div>
+        <div class="pr"><span class="src">Metro · Doyal 1 kg</span><span class="val higher">€16.74/kg</span></div>
+        <div class="sav af">Arfiyato −60%</div>
       </div>
     </div>
 
-    <!-- 11. Oliven mit Knoblauch -->
     <div class="card">
-      <div class="card-img"><span class="no-img">10 kg bulk container</span></div>
-      <div class="card-body">
+      <div class="card-top">
+        <div class="placeholder">10 kg<br>Bulk</div>
         <h3>Grüne Oliven mit Knoblauch</h3>
-        <div class="price-row"><span class="source">Arfiyato · 10 kg bucket</span><span class="price winner">€6.50/kg</span></div>
-        <div class="price-row"><span class="source">Metro · comparable</span><span class="price loser">~€12–17/kg</span></div>
-        <div class="savings-bar af-wins">Arfiyato −50 to −63% · bulk advantage, no Metro 10 kg option</div>
+      </div>
+      <div class="card-body">
+        <div class="pr"><span class="src">Arfiyato · 10 kg Eimer</span><span class="val better">€6.50/kg</span></div>
+        <div class="pr"><span class="src">Metro · vergleichbar</span><span class="val higher">~€12–17/kg</span></div>
+        <div class="sav af">Arfiyato −50 to −63%</div>
       </div>
     </div>
 
-    <!-- 12. Chili ganz -->
     <div class="card">
-      <div class="card-img"><span class="no-img">Spice · 1 kg</span></div>
-      <div class="card-body">
+      <div class="card-top">
+        <div class="placeholder">1 kg<br>Spice</div>
         <h3>Chili ganz (getrocknet)</h3>
-        <div class="price-row"><span class="source">Arfiyato · 1 kg</span><span class="price winner">€19.99/kg</span></div>
-        <div class="price-row"><span class="source">Metro · FUCHS 500 g</span><span class="price loser">€36.36/kg</span></div>
-        <div class="price-row"><span class="source">Van Beekum · 300 g</span><span class="price loser">€49.30/kg</span></div>
-        <div class="savings-bar af-wins">Arfiyato −45% vs Metro · −59% vs Van Beekum</div>
-        <p class="card-note">Cheapest option by far — even specialist suppliers like Van Beekum are 2.5× the price.</p>
+      </div>
+      <div class="card-body">
+        <div class="pr"><span class="src">Arfiyato · 1 kg</span><span class="val better">€19.99/kg</span></div>
+        <div class="pr"><span class="src">Metro · FUCHS 500 g</span><span class="val higher">€36.36/kg</span></div>
+        <div class="pr"><span class="src">Van Beekum · ganz 300 g</span><span class="val higher">€49.30/kg</span></div>
+        <div class="pr"><span class="src">Van Beekum · zerkleinert 1 kg</span><span class="val higher">€15.29/kg</span></div>
+        <div class="sav af">Arfiyato −45% vs Metro</div>
+        <div class="card-note">Whole dried chilis. Van Beekum crushed chilis (€15.29/kg) are cheaper but different product.</div>
       </div>
     </div>
 
-    <!-- 13. Frischkäse-Creme Paprika -->
     <div class="card">
-      <div class="card-img"><span class="no-img">Fresh cheese · refrigerated</span></div>
-      <div class="card-body">
+      <div class="card-top">
+        <div class="placeholder">1.3 kg<br>Fresh</div>
         <h3>Frischkäse-Creme Paprika</h3>
-        <div class="price-row"><span class="source">Arfiyato · 1.3 kg</span><span class="price winner">€14.61/kg</span></div>
-        <div class="price-row"><span class="source">Metro · METRO Chef 1.1 kg</span><span class="price loser">€15.32/kg</span></div>
-        <div class="savings-bar af-wins">Arfiyato −5% · close, but Arfiyato offers more volume per pack</div>
+      </div>
+      <div class="card-body">
+        <div class="pr"><span class="src">Arfiyato · 1.3 kg</span><span class="val better">€14.61/kg</span></div>
+        <div class="pr"><span class="src">Metro · METRO Chef 1.1 kg</span><span class="val higher">€15.32/kg</span></div>
+        <div class="sav af">Arfiyato −5%</div>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- ============ SECTION 3: ARFIYATO ONLY (4 products) ============ -->
+<!-- SECTION 3: Arfiyato only -->
 <section>
-  <div class="section-title">
-    <span>❓</span> Only available at Arfiyato <span class="badge badge-gray">4 products · €120.96</span>
-  </div>
-  <p class="section-desc">These specialty products aren't available at Metro. Question: <strong>Are they really needed for street food?</strong></p>
+  <div class="sh">Only available at Arfiyato <span class="pill pill-n">4 products · €120.96/order</span></div>
+  <p class="sd">No direct Metro equivalent. Metro alternatives listed where applicable.</p>
 
   <div class="products">
 
-    <!-- 14. Gegrillte Oliven -->
-    <div class="card">
-      <div class="card-body">
-        <h3>Gegrillte Oliven Egemar</h3>
-        <div class="price-row"><span class="source">Arfiyato</span><span class="price">€69.99</span></div>
-        <div class="price-row"><span class="source">Alt: Metro Grüne Oliven m. Mandeln 1.1 kg</span><span class="price">€13.76/kg</span></div>
-        <div style="margin-top:12px; background:#fff3e0; border-radius:8px; padding:10px 14px; font-size:0.88rem; color:#b35c00;">
-          <strong>€69.99 for olives?</strong> Most expensive item on the list! Metro's Grüne Oliven mit Mandeln (€15.14/1.1 kg) are premium quality at a fraction of the price.
-        </div>
-      </div>
+    <div class="af-only">
+      <h3>Gegrillte Oliven Egemar — €69.99</h3>
+      <div class="pr"><span class="src">Arfiyato · Egemar</span><span class="val">€69.99</span></div>
+      <div class="af-alt">Metro alternative: Grüne Oliven mit Mandeln 1.1 kg — €13.76/kg (€15.14 total)</div>
     </div>
 
-    <!-- 15. Pepper Drops Rot -->
-    <div class="card">
-      <div class="card-body">
-        <h3>Pepper Drops Rot 1.2 kg</h3>
-        <div class="price-row"><span class="source">Arfiyato · 1.2 kg</span><span class="price">€12.49/kg</span></div>
-        <div class="price-row"><span class="source">Alternative</span><span class="price">Metro ARO Paprika €2.41/L</span></div>
-        <div style="margin-top:12px; background:#f0eeeb; border-radius:8px; padding:10px 14px; font-size:0.88rem; color:#6b6560;">
-          Nice extra — but are they really needed for a Gyros/Souvlaki concept?
-        </div>
-      </div>
+    <div class="af-only">
+      <h3>Pepper Drops Rot — 1.2 kg</h3>
+      <div class="pr"><span class="src">Arfiyato · 1.2 kg</span><span class="val">€12.49/kg (€14.99)</span></div>
+      <div class="af-note">No direct Metro equivalent found.</div>
     </div>
 
-    <!-- 16. Pepper Drops Gelb -->
-    <div class="card">
-      <div class="card-body">
-        <h3>Pepper Drops Gelb 1.2 kg</h3>
-        <div class="price-row"><span class="source">Arfiyato · 1.2 kg</span><span class="price">€13.33/kg</span></div>
-        <div class="price-row"><span class="source">Alternative</span><span class="price">Metro ARO Paprika €2.41/L</span></div>
-        <div style="margin-top:12px; background:#f0eeeb; border-radius:8px; padding:10px 14px; font-size:0.88rem; color:#6b6560;">
-          Same question — two colours of Pepper Drops really necessary?
-        </div>
-      </div>
+    <div class="af-only">
+      <h3>Pepper Drops Gelb — 1.2 kg</h3>
+      <div class="pr"><span class="src">Arfiyato · 1.2 kg</span><span class="val">€13.33/kg (€15.99)</span></div>
+      <div class="af-note">No direct Metro equivalent found.</div>
     </div>
 
-    <!-- 17. Gefüllte Tomatenpaprika -->
-    <div class="card">
-      <div class="card-body">
-        <h3>Gefüllte Tomatenpaprika</h3>
-        <div class="price-row"><span class="source">Arfiyato</span><span class="price">€19.99</span></div>
-        <div class="price-row"><span class="source">Alternative</span><span class="price">Metro Chef getrocknete Tomaten 1.7 L · €10.66</span></div>
-        <div style="margin-top:12px; background:#f0eeeb; border-radius:8px; padding:10px 14px; font-size:0.88rem; color:#6b6560;">
-          Metro Chef Tomaten getrocknet Julienne in Öl (€6.27/L) as a versatile alternative — half the price, more uses.
-        </div>
-      </div>
+    <div class="af-only">
+      <h3>Gefüllte Tomatenpaprika — €19.99</h3>
+      <div class="pr"><span class="src">Arfiyato</span><span class="val">€19.99</span></div>
+      <div class="af-alt">Metro alternative: METRO Chef getrocknete Tomaten Julienne 1.7 L — €6.27/L (€10.66)</div>
     </div>
 
   </div>
 </section>
 
-<!-- ============ SUMMARY TABLE ============ -->
+<!-- FULL TABLE -->
 <section>
-  <div class="section-title">Full Overview — All 17 Products</div>
-  <div style="overflow-x: auto;">
-  <table class="summary-table">
+  <div class="sh">Full comparison table</div>
+  <div class="tbl-wrap">
+  <table>
     <thead>
-      <tr>
-        <th>#</th>
-        <th>Product</th>
-        <th>Arfiyato €/kg</th>
-        <th>Metro €/kg</th>
-        <th>Diff.</th>
-        <th>Winner</th>
-      </tr>
+      <tr><th>#</th><th>Product</th><th>Arfiyato/kg or /L</th><th>Metro/kg or /L</th><th>Difference</th><th>Better price</th></tr>
     </thead>
     <tbody>
-      <tr><td>1</td><td>Weinblätter Palirria 2 kg</td><td class="loser-cell">€30.00/kg</td><td class="winner-cell">€6.03/kg</td><td>−80%</td><td style="color:#1a7a3a;font-weight:700">Metro</td></tr>
-      <tr><td>2</td><td>Riesenbohnen Palirria 2 kg</td><td class="loser-cell">€25.00/kg</td><td class="winner-cell">€6.26/kg</td><td>−75%</td><td style="color:#1a7a3a;font-weight:700">Metro</td></tr>
-      <tr><td>3</td><td>Champignons 1. Wahl (Dose)</td><td class="loser-cell">€6.80/L</td><td class="winner-cell">€3.44/L</td><td>−49%</td><td style="color:#1a7a3a;font-weight:700">Metro</td></tr>
-      <tr><td>4</td><td>Florini Paprika 2.65 L</td><td class="loser-cell">€4.90/L</td><td class="winner-cell">€2.41/L</td><td>−51%</td><td style="color:#1a7a3a;font-weight:700">Metro</td></tr>
-      <tr><td>5</td><td>Auberginen gegrillt 2.4 kg</td><td class="loser-cell">€9.16/kg</td><td class="winner-cell">€4.81/kg</td><td>−47%</td><td style="color:#1a7a3a;font-weight:700">Metro</td></tr>
-      <tr><td>6</td><td>Balsamico-Zwiebeln ~1.7 L</td><td class="loser-cell">€5.88/L</td><td class="winner-cell">€4.39/L</td><td>−25%</td><td style="color:#1a7a3a;font-weight:700">Metro</td></tr>
-      <tr><td>7</td><td>Kalamon / Kalamata Oliven</td><td class="loser-cell">~€13.40/kg</td><td class="winner-cell">€5.52/L (4.25 L)</td><td>−59%</td><td style="color:#1a7a3a;font-weight:700">Metro</td></tr>
-      <tr><td>8</td><td>Artischockenherzen ~2.65 L</td><td class="loser-cell">€3.77/L</td><td class="winner-cell">€3.42/L</td><td>−9%</td><td style="color:#1a7a3a;font-weight:700">Metro</td></tr>
-      <tr><td>9</td><td>Oliven mit Paprika</td><td class="loser-cell">€6.50/kg</td><td class="winner-cell">€3.54/kg</td><td>−46%</td><td style="color:#1a7a3a;font-weight:700">Metro</td></tr>
-      <tr style="background:#fff8e1"><td>10</td><td>Tahini 4 kg</td><td class="winner-cell">€6.75/kg</td><td class="loser-cell">€16.74/kg</td><td>AF −60%</td><td style="color:#b35c00;font-weight:700">Arfiyato</td></tr>
-      <tr style="background:#fff8e1"><td>11</td><td>Oliven Knoblauch 10 kg</td><td class="winner-cell">€6.50/kg</td><td class="loser-cell">~€12–17/kg</td><td>AF −63%</td><td style="color:#b35c00;font-weight:700">Arfiyato</td></tr>
-      <tr style="background:#fff8e1"><td>12</td><td>Chili ganz 1 kg</td><td class="winner-cell">€19.99/kg</td><td class="loser-cell">€36.36/kg</td><td>AF −45%</td><td style="color:#b35c00;font-weight:700">Arfiyato</td></tr>
-      <tr style="background:#fff8e1"><td>13</td><td>Frischkäse-Creme Paprika 1.3 kg</td><td class="winner-cell">€14.61/kg</td><td class="loser-cell">€15.32/kg</td><td>AF −5%</td><td style="color:#b35c00;font-weight:700">Arfiyato</td></tr>
-      <tr style="background:#f0eeeb"><td>14</td><td>Gegrillte Oliven Egemar</td><td>€69.99</td><td>€13.76/kg (Mandel-Oliven)</td><td>—</td><td style="color:#888">Arfiyato only</td></tr>
-      <tr style="background:#f0eeeb"><td>15</td><td>Pepper Drops Rot 1.2 kg</td><td>€12.49/kg</td><td>—</td><td>—</td><td style="color:#888">Arfiyato only</td></tr>
-      <tr style="background:#f0eeeb"><td>16</td><td>Pepper Drops Gelb 1.2 kg</td><td>€13.33/kg</td><td>—</td><td>—</td><td style="color:#888">Arfiyato only</td></tr>
-      <tr style="background:#f0eeeb"><td>17</td><td>Gefüllte Tomatenpaprika</td><td>€19.99</td><td>€10.66 (alt.)</td><td>—</td><td style="color:#888">Arfiyato only</td></tr>
+      <tr><td>1</td><td>Weinblätter Palirria 2 kg</td><td>€30.00/kg</td><td class="tw">€6.03/kg</td><td class="tw">−80%</td><td class="tw">Metro</td></tr>
+      <tr><td>2</td><td>Riesenbohnen Palirria</td><td>€25.00/kg</td><td class="tw">€6.26/kg</td><td class="tw">−75%</td><td class="tw">Metro</td></tr>
+      <tr><td>3</td><td>Kalamon Oliven 4.25 L</td><td>~€13.40/kg</td><td class="tw">€5.52/L</td><td class="tw">−59%</td><td class="tw">Metro</td></tr>
+      <tr><td>4</td><td>Paprikastreifen 2.65 L</td><td>€4.90/L</td><td class="tw">€2.41/L</td><td class="tw">−51%</td><td class="tw">Metro</td></tr>
+      <tr><td>5</td><td>Champignons 1. Wahl 3.1 L</td><td>€6.80/L</td><td class="tw">€3.44/L</td><td class="tw">−49%</td><td class="tw">Metro</td></tr>
+      <tr><td>6</td><td>Auberginen gegrillt</td><td>€9.16/kg</td><td class="tw">€4.81/kg</td><td class="tw">−47%</td><td class="tw">Metro</td></tr>
+      <tr><td>7</td><td>Oliven mit Paprika</td><td>€6.50/kg</td><td class="tw">€3.54/kg</td><td class="tw">−46%</td><td class="tw">Metro</td></tr>
+      <tr><td>8</td><td>Balsamico-Zwiebeln 1.7 L</td><td>€5.88/L</td><td class="tw">€4.39/L</td><td class="tw">−25%</td><td class="tw">Metro</td></tr>
+      <tr><td>9</td><td>Artischockenherzen 2.65 L</td><td>€3.77/L</td><td class="tw">€3.42/L</td><td class="tw">−9%</td><td class="tw">Metro</td></tr>
+      <tr><td>10</td><td>Tahini 4 kg</td><td class="ta">€6.75/kg</td><td>€16.74/kg</td><td class="ta">AF −60%</td><td class="ta">Arfiyato</td></tr>
+      <tr><td>11</td><td>Oliven Knoblauch 10 kg</td><td class="ta">€6.50/kg</td><td>~€12–17/kg</td><td class="ta">AF −63%</td><td class="ta">Arfiyato</td></tr>
+      <tr><td>12</td><td>Chili ganz 1 kg</td><td class="ta">€19.99/kg</td><td>€36.36/kg</td><td class="ta">AF −45%</td><td class="ta">Arfiyato</td></tr>
+      <tr><td>13</td><td>Frischkäse-Creme 1.3 kg</td><td class="ta">€14.61/kg</td><td>€15.32/kg</td><td class="ta">AF −5%</td><td class="ta">Arfiyato</td></tr>
+      <tr><td>14</td><td>Gegrillte Oliven Egemar</td><td class="tn">€69.99</td><td class="tn">— (alt. €13.76/kg)</td><td class="tn">—</td><td class="tn">AF only</td></tr>
+      <tr><td>15</td><td>Pepper Drops Rot 1.2 kg</td><td class="tn">€12.49/kg</td><td class="tn">—</td><td class="tn">—</td><td class="tn">AF only</td></tr>
+      <tr><td>16</td><td>Pepper Drops Gelb 1.2 kg</td><td class="tn">€13.33/kg</td><td class="tn">—</td><td class="tn">—</td><td class="tn">AF only</td></tr>
+      <tr><td>17</td><td>Gefüllte Tomatenpaprika</td><td class="tn">€19.99</td><td class="tn">— (alt. €6.27/L)</td><td class="tn">—</td><td class="tn">AF only</td></tr>
     </tbody>
   </table>
   </div>
 </section>
 
-<!-- ============ RECOMMENDATIONS ============ -->
-<section>
-  <div class="section-title">Recommendations</div>
-  <div class="reco-box">
-    <div class="reco-step">
-      <div class="reco-num">1</div>
-      <div class="reco-text">
-        <strong>Switch 9 products to Metro immediately</strong>
-        Weinblätter, Riesenbohnen, Champignons, Paprika, Auberginen, Zwiebeln, Kalamata, Artischocken, Oliven mit Paprika — saves ~€170 per order, roughly €2,400 per year.
-      </div>
-    </div>
-    <div class="reco-step">
-      <div class="reco-num">2</div>
-      <div class="reco-text">
-        <strong>Keep 4 products at Arfiyato</strong>
-        Tahini (4 kg), Oliven Knoblauch (10 kg), Chili, Frischkäse — Arfiyato wins here through bulk packaging. Even Van Beekum charges €49.30/kg for chili vs. Arfiyato's €19.99/kg.
-      </div>
-    </div>
-    <div class="reco-step">
-      <div class="reco-num">3</div>
-      <div class="reco-text">
-        <strong>Question the 4 "Arfiyato only" products</strong>
-        €120.96 on specialty items that Metro doesn't carry. Does a Greek street food truck really need gegrillte Oliven for €69.99? Metro Grüne Oliven mit Mandeln at €13.76/kg are a premium alternative. Metro Chef getrocknete Tomaten (€10.66/1.7 L) can replace Gefüllte Tomatenpaprika (€19.99).
-      </div>
-    </div>
+<!-- Summary -->
+<div class="summary-box">
+  <h2>Summary</h2>
+  <div class="sum-item">
+    <div class="sum-dot m"></div>
+    <div class="sum-text"><strong>9 products are cheaper at Metro</strong> — savings between 9% and 80% per unit. Same brands where possible (Palirria). Estimated saving ~€170 per order on these items alone.</div>
   </div>
-
-  <div class="info-box">
-    <strong>Negotiate Metro prices!</strong><br>
-    The Metro prices shown are list prices. With regular orders, gastro discounts are possible — just ask your Metro account manager. This could make the 9 Metro products another 5–10% cheaper.
+  <div class="sum-item">
+    <div class="sum-dot a"></div>
+    <div class="sum-text"><strong>4 products are cheaper at Arfiyato</strong> — bulk packaging (Tahini 4 kg, Oliven 10 kg) and specialty items (Chili, Frischkäse-Creme) where Arfiyato offers the better deal.</div>
   </div>
-</section>
+  <div class="sum-item">
+    <div class="sum-dot n"></div>
+    <div class="sum-text"><strong>4 products are only at Arfiyato</strong> (€120.96/order) — no direct Metro equivalent. Metro alternatives exist for some (Oliven mit Mandeln, getrocknete Tomaten).</div>
+  </div>
+</div>
 
 </div>
 
 <div class="footer">
-  Price comparison created March 9, 2026 · All prices net (excl. VAT) · Metro Lieferservice Gastronomie · Arfiyato Feinkost · Van Beekum Specerijen
+  All prices netto (excl. VAT) · Metro Lieferservice Gastronomie Saarbrücken · Arfiyato Feinkost · Van Beekum Specerijen · March 2026
 </div>
 
 </body>
