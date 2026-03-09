@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Supplier Price Analysis — Spudz Greek Street Food</title>
+<title>Supplier Comparison — Spudz Greek Street Food</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -12,23 +12,18 @@
 :root {
   --bg: #0a0f1a;
   --surface: #111827;
-  --surface-hover: #1a2332;
+  --surface-alt: #0d1525;
   --border: rgba(255,255,255,0.06);
   --border-light: rgba(255,255,255,0.1);
   --text: #f1f5f9;
   --text-muted: #94a3b8;
   --metro-blue: #60a5fa;
-  --metro-glow: rgba(96,165,250,0.15);
   --arfi-warm: #fbbf24;
-  --arfi-glow: rgba(251,191,36,0.12);
   --green: #34d399;
-  --green-glow: rgba(52,211,153,0.15);
   --green-deep: #059669;
   --red: #f87171;
   --accent: #818cf8;
-  --radius: 16px;
-  --shadow: 0 2px 8px rgba(0,0,0,0.3);
-  --shadow-lg: 0 12px 48px rgba(0,0,0,0.5);
+  --radius: 14px;
 }
 
 body {
@@ -48,8 +43,7 @@ body {
 /* HERO */
 .hero {
   background: linear-gradient(160deg, #0a0f1a 0%, #0f1b2e 30%, #122240 60%, #0a0f1a 100%);
-  color: white;
-  padding: 80px 0 64px;
+  padding: 72px 0 56px;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -57,19 +51,15 @@ body {
 .hero::before {
   content: '';
   position: absolute;
-  top: -60%;
-  left: -30%;
-  width: 160%;
-  height: 220%;
-  background: radial-gradient(ellipse at 30% 40%, rgba(96,165,250,0.07) 0%, transparent 55%),
-              radial-gradient(ellipse at 70% 60%, rgba(52,211,153,0.05) 0%, transparent 50%);
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 40%, rgba(96,165,250,0.06) 0%, transparent 55%),
+              radial-gradient(ellipse at 70% 60%, rgba(52,211,153,0.04) 0%, transparent 50%);
   pointer-events: none;
 }
 .hero-content { position: relative; z-index: 1; }
 .hero-badge {
   display: inline-block;
   background: rgba(96,165,250,0.1);
-  backdrop-filter: blur(10px);
   border: 1px solid rgba(96,165,250,0.2);
   border-radius: 100px;
   padding: 8px 20px;
@@ -81,9 +71,9 @@ body {
   color: var(--metro-blue);
 }
 .hero h1 {
-  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-size: clamp(1.8rem, 4.5vw, 2.8rem);
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.2;
   margin-bottom: 16px;
   letter-spacing: -0.02em;
 }
@@ -94,288 +84,247 @@ body {
   background-clip: text;
 }
 .hero p {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--text-muted);
-  max-width: 600px;
+  max-width: 640px;
   margin: 0 auto;
   font-weight: 300;
 }
 
-/* SUMMARY STRIP */
-.summary-strip {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-  margin: -36px auto 48px;
+/* INVOICE CALLOUT */
+.invoice-callout {
+  background: linear-gradient(135deg, rgba(52,211,153,0.08) 0%, rgba(96,165,250,0.05) 100%);
+  border: 1px solid rgba(52,211,153,0.2);
+  border-radius: 16px;
+  padding: 32px 36px;
+  margin: -28px auto 48px;
+  max-width: 1100px;
   position: relative;
   z-index: 2;
-  padding: 0 24px;
-  max-width: 1100px;
-}
-.stat-card {
-  background: var(--surface);
-  border-radius: var(--radius);
-  padding: 24px;
-  text-align: center;
-  border: 1px solid var(--border-light);
-  position: relative;
-  overflow: hidden;
-}
-.stat-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius);
-  pointer-events: none;
-}
-.stat-card.glow-green::before {
-  background: radial-gradient(ellipse at 50% 0%, var(--green-glow) 0%, transparent 70%);
-}
-.stat-card.glow-blue::before {
-  background: radial-gradient(ellipse at 50% 0%, var(--metro-glow) 0%, transparent 70%);
-}
-.stat-card.glow-gold::before {
-  background: radial-gradient(ellipse at 50% 0%, var(--arfi-glow) 0%, transparent 70%);
-}
-.stat-number {
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  position: relative;
-}
-.stat-number.green { color: var(--green); }
-.stat-number.blue { color: var(--metro-blue); }
-.stat-number.gold { color: var(--arfi-warm); }
-.stat-label {
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-top: 6px;
-  font-weight: 500;
-  position: relative;
-}
-
-/* SECTIONS */
-.section { margin-bottom: 64px; }
-.section-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 32px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border-light);
-}
-.section-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  flex-shrink: 0;
-}
-.section-icon.metro { background: rgba(96,165,250,0.12); }
-.section-icon.arfi { background: rgba(251,191,36,0.12); }
-.section-icon.exclusive { background: rgba(129,140,248,0.12); }
-.section-title {
-  font-size: 1.4rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-.section-count {
-  font-size: 13px;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
-/* PRODUCT CARDS */
-.product-grid { display: grid; gap: 16px; }
-.product-card {
-  background: var(--surface);
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  overflow: hidden;
   display: grid;
-  grid-template-columns: 180px 1fr;
-  transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
-}
-.product-card:hover {
-  border-color: var(--border-light);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-}
-.product-card.featured {
-  border: 1px solid rgba(52,211,153,0.25);
-  grid-template-columns: 220px 1fr;
-}
-.product-card.featured:hover { border-color: rgba(52,211,153,0.5); }
-.product-card.featured .product-image { min-height: 220px; }
-
-.product-image {
-  background: rgba(255,255,255,0.03);
-  display: flex;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
   align-items: center;
-  justify-content: center;
-  padding: 16px;
-  min-height: 160px;
-  position: relative;
 }
-.product-image img {
-  max-width: 100%;
-  max-height: 140px;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 12px rgba(0,0,0,0.3));
+.invoice-callout-text h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 6px;
 }
-.product-card.featured .product-image img { max-height: 180px; }
-.placeholder-img {
-  width: 80px;
-  height: 80px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.04);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  opacity: 0.4;
+.invoice-callout-text p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
 }
-
-.product-info {
-  padding: 20px 24px;
+.invoice-number {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 10px;
+  align-items: flex-end;
+  gap: 4px;
 }
-.product-name {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--text);
-  line-height: 1.3;
+.invoice-number .big {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--green);
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
-.product-details {
+.invoice-number .label {
   font-size: 13px;
   color: var(--text-muted);
+  font-weight: 500;
 }
 
-.price-row {
+/* TABLES */
+.data-section {
+  margin-bottom: 48px;
+}
+.data-section-header {
   display: flex;
   align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
 }
-.price-block { display: flex; flex-direction: column; gap: 2px; }
-.price-label {
+.section-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.section-dot.green { background: var(--green); }
+.section-dot.amber { background: var(--arfi-warm); }
+.section-dot.gray { background: var(--text-muted); }
+.data-section-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.data-section-header .count {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  margin-left: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+thead th {
+  text-align: left;
+  padding: 10px 16px;
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--text-muted);
+  border-bottom: 1px solid var(--border-light);
+  white-space: nowrap;
 }
-.price-value {
-  font-size: 1.3rem;
-  font-weight: 700;
+thead th.right, td.right { text-align: right; }
+tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
 }
-.price-value.metro { color: var(--metro-blue); }
-.price-value.arfi { color: var(--arfi-warm); }
-.price-value.strike {
-  text-decoration: line-through;
-  color: var(--text-muted);
-  font-weight: 400;
-  font-size: 1rem;
-  opacity: 0.6;
+tbody tr:hover { background: rgba(255,255,255,0.02); }
+tbody td {
+  padding: 14px 16px;
+  vertical-align: middle;
 }
-
-.savings-badge {
-  display: inline-flex;
+.product-cell {
+  display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 6px 14px;
-  border-radius: 100px;
+  gap: 12px;
+}
+.product-thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.product-thumb img {
+  max-width: 40px;
+  max-height: 40px;
+  object-fit: contain;
+}
+.product-thumb .emoji { font-size: 22px; opacity: 0.5; }
+.product-label strong {
+  display: block;
+  font-weight: 600;
   font-size: 14px;
+  line-height: 1.3;
+}
+.product-label .note {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+.price-metro { color: var(--metro-blue); font-weight: 600; }
+.price-arfi { color: var(--text-muted); }
+.price-arfi-win { color: var(--arfi-warm); font-weight: 600; }
+
+.pct-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 13px;
   font-weight: 700;
   white-space: nowrap;
 }
-.savings-badge.green {
+.pct-badge.green {
   background: rgba(52,211,153,0.12);
   color: var(--green);
-  border: 1px solid rgba(52,211,153,0.2);
 }
-.savings-badge.red {
-  background: rgba(248,113,113,0.12);
-  color: var(--red);
-  border: 1px solid rgba(248,113,113,0.2);
-}
-.savings-badge.amber {
+.pct-badge.amber {
   background: rgba(251,191,36,0.12);
   color: var(--arfi-warm);
-  border: 1px solid rgba(251,191,36,0.2);
 }
 
-/* SPOTLIGHT (Oliven) */
+.savings-cell {
+  color: var(--green);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.table-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+  padding: 14px 16px;
+  border-top: 2px solid var(--border-light);
+  font-weight: 700;
+  font-size: 15px;
+}
+.table-footer .label { color: var(--text-muted); }
+.table-footer .value { color: var(--green); }
+
+/* SPOTLIGHT */
 .spotlight {
-  background: linear-gradient(135deg, rgba(52,211,153,0.06) 0%, rgba(96,165,250,0.04) 100%);
-  border: 1px solid rgba(52,211,153,0.2);
-  border-radius: 20px;
-  padding: 36px;
-  margin-bottom: 32px;
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 48px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
+  grid-template-columns: auto 1fr auto;
+  gap: 24px;
   align-items: center;
 }
-.spotlight-label {
-  display: inline-block;
-  background: var(--green-deep);
-  color: white;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 4px 12px;
-  border-radius: 100px;
-  margin-bottom: 12px;
-}
-.spotlight h3 {
-  font-size: 1.4rem;
-  font-weight: 800;
-  margin-bottom: 8px;
-  letter-spacing: -0.02em;
-}
-.spotlight-price {
-  font-size: 3rem;
-  font-weight: 900;
-  color: var(--green);
-  letter-spacing: -0.03em;
-  line-height: 1;
-  margin-bottom: 4px;
-}
-.spotlight-vs {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-}
-.spotlight-vs strong {
-  color: var(--red);
-  text-decoration: line-through;
-}
-.spotlight-image {
+.spotlight-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.spotlight-image img {
-  max-height: 200px;
-  filter: drop-shadow(0 4px 24px rgba(52,211,153,0.15));
+.spotlight-img img {
+  max-width: 64px;
+  max-height: 64px;
+  object-fit: contain;
+}
+.spotlight-text h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.spotlight-text p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.spotlight-prices {
+  text-align: right;
+  white-space: nowrap;
+}
+.spotlight-prices .metro-price {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--green);
+  line-height: 1;
+}
+.spotlight-prices .vs-price {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.spotlight-prices .vs-price strong {
+  color: var(--red);
+  text-decoration: line-through;
 }
 
 /* BOTTOM SUMMARY */
 .bottom-summary {
   background: linear-gradient(160deg, #111827 0%, #1a2744 50%, #111827 100%);
   border: 1px solid var(--border-light);
-  border-radius: 20px;
-  padding: 48px;
-  text-align: center;
-  margin: 64px 0 48px;
+  border-radius: 18px;
+  padding: 40px;
+  margin: 48px 0;
   position: relative;
   overflow: hidden;
 }
@@ -383,67 +332,68 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 0%, rgba(52,211,153,0.06) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(52,211,153,0.05) 0%, transparent 60%);
   pointer-events: none;
 }
 .bottom-summary h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 800;
-  margin-bottom: 8px;
-  letter-spacing: -0.02em;
+  margin-bottom: 20px;
   position: relative;
 }
-.bottom-summary > p {
-  color: var(--text-muted);
-  margin-bottom: 32px;
-  font-size: 1.05rem;
-  position: relative;
-}
-.summary-grid {
+.summary-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 24px;
-  text-align: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
   position: relative;
 }
-.summary-item .big {
-  font-size: 2.5rem;
+.summary-box {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+.summary-box .num {
+  font-size: 2rem;
   font-weight: 900;
   letter-spacing: -0.03em;
-  line-height: 1;
+  line-height: 1.1;
 }
-.summary-item .big.green-glow { color: var(--green); }
-.summary-item .big.blue-glow { color: var(--metro-blue); }
-.summary-item .big.gold-glow { color: var(--arfi-warm); }
-.summary-item .desc {
-  font-size: 14px;
-  color: var(--text-muted);
-  margin-top: 8px;
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 32px 24px;
+.summary-box .num.green { color: var(--green); }
+.summary-box .num.blue { color: var(--metro-blue); }
+.summary-box .num.gold { color: var(--arfi-warm); }
+.summary-box .desc {
   font-size: 13px;
   color: var(--text-muted);
+  margin-top: 6px;
+}
+
+footer {
+  text-align: center;
+  padding: 28px 24px;
+  font-size: 12px;
+  color: var(--text-muted);
   border-top: 1px solid var(--border);
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  .hero { padding: 60px 0 50px; }
-  .product-card, .product-card.featured { grid-template-columns: 1fr; }
-  .product-image { min-height: 140px; }
+  .hero { padding: 56px 0 44px; }
+  .invoice-callout { grid-template-columns: 1fr; text-align: center; }
+  .invoice-number { align-items: center; }
+  table { font-size: 13px; }
+  thead th, tbody td { padding: 10px 10px; }
+  .product-thumb { display: none; }
   .spotlight { grid-template-columns: 1fr; text-align: center; }
-  .bottom-summary { padding: 32px 20px; }
-  .summary-strip { margin-top: -24px; }
-  .price-row { gap: 10px; }
+  .spotlight-img { display: none; }
+  .spotlight-prices { text-align: center; }
+  .summary-row { grid-template-columns: 1fr; }
+  .bottom-summary { padding: 28px 20px; }
 }
 @media (max-width: 480px) {
-  .summary-strip { grid-template-columns: 1fr 1fr; }
-  .stat-number { font-size: 1.6rem; }
+  .product-label .note { display: none; }
 }
 </style>
 </head>
@@ -452,480 +402,331 @@ footer {
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content container">
-    <div class="hero-badge">Supplier Price Analysis · March 2026</div>
-    <h1>Where Your Money<br><span>Goes Further</span></h1>
-    <p>A side-by-side comparison of unit prices across two suppliers, based on current catalog pricing.</p>
+    <div class="hero-badge">Supplier Comparison · March 2026</div>
+    <h1>Metro vs. Arfiyato —<br><span>Price Comparison</span></h1>
+    <p>Side-by-side unit prices for every product we order, calculated against the latest Arfiyato delivery.</p>
   </div>
 </section>
 
-<!-- KEY STATS -->
-<div class="summary-strip">
-  <div class="stat-card glow-green">
-    <div class="stat-number green">9 of 13</div>
-    <div class="stat-label">Products Cheaper at Metro</div>
-  </div>
-  <div class="stat-card glow-green">
-    <div class="stat-number green">~€170</div>
-    <div class="stat-label">Estimated Savings per Order</div>
-  </div>
-  <div class="stat-card glow-blue">
-    <div class="stat-number blue">€2,400+</div>
-    <div class="stat-label">Potential Annual Savings</div>
-  </div>
-  <div class="stat-card glow-gold">
-    <div class="stat-number gold">4</div>
-    <div class="stat-label">Better at Arfiyato (Bulk)</div>
+<!-- INVOICE SAVINGS CALLOUT -->
+<div class="container">
+  <div class="invoice-callout">
+    <div class="invoice-callout-text">
+      <h2>Savings on Arfiyato Order D-56065 (09.03.2026)</h2>
+      <p>Calculated for the 8 products where Metro offers a direct equivalent. The remaining items are either cheaper at Arfiyato or exclusive to their catalog.</p>
+    </div>
+    <div class="invoice-number">
+      <div class="big">€1,400</div>
+      <div class="label">potential savings (28% of €4,957)</div>
+    </div>
   </div>
 </div>
 
 <main class="container">
 
-  <!-- SPOTLIGHT: Oliven -->
-  <div class="spotlight">
-    <div>
-      <div class="spotlight-label">Biggest Find</div>
-      <h3>Premium Olives — Same Quality, Different Price</h3>
-      <div class="spotlight-price">€15.14</div>
-      <div class="spotlight-vs">
-        Metro · Green Olives with Almonds (1.1 kg, €13.76/kg)<br>
-        vs. Arfiyato · Grilled Olives Egemar: <strong>€69.99</strong>
-      </div>
-      <div style="margin-top: 12px;">
-        <span class="savings-badge green">↓ €54.85 less</span>
-      </div>
+  <!-- TABLE 1: METRO CHEAPER -->
+  <section class="data-section">
+    <div class="data-section-header">
+      <div class="section-dot green"></div>
+      <h3>Metro is Cheaper</h3>
+      <div class="count">8 products · 51% average savings</div>
     </div>
-    <div class="spotlight-image">
-      <img src="https://cdn.metro-group.com/de/de_pim_32003001001_01.png" alt="Green Olives with Almonds" loading="lazy">
+
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Qty Ordered</th>
+          <th class="right">Metro</th>
+          <th class="right">Arfiyato</th>
+          <th class="right">Diff</th>
+          <th class="right">Saved</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="product-cell">
+              <div class="product-thumb"><img src="https://cdn.metro-group.com/de/de_pim_36233001001_01.png" alt=""></div>
+              <div class="product-label">
+                <strong>Vine Leaves Palirria (2 kg)</strong>
+                <span class="note">Identical product at both suppliers</span>
+              </div>
+            </div>
+          </td>
+          <td>10 pcs</td>
+          <td class="right price-metro">€6.03/kg</td>
+          <td class="right price-arfi">€30.00/kg</td>
+          <td class="right"><span class="pct-badge green">−80%</span></td>
+          <td class="right savings-cell">€479</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="product-cell">
+              <div class="product-thumb"><img src="https://cdn.metro-group.com/de/de_pim_36261001001_01.png" alt=""></div>
+              <div class="product-label">
+                <strong>Giant Beans Palirria (2 kg)</strong>
+                <span class="note">Identical product at both suppliers</span>
+              </div>
+            </div>
+          </td>
+          <td>8 pcs</td>
+          <td class="right price-metro">€6.26/kg</td>
+          <td class="right price-arfi">€25.00/kg</td>
+          <td class="right"><span class="pct-badge green">−75%</span></td>
+          <td class="right savings-cell">€300</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="product-cell">
+              <div class="product-thumb"><img src="https://cdn.metro-group.com/de/de_pim_280714001001_01.png" alt=""></div>
+              <div class="product-label"><strong>Mushrooms 1st Choice (5 L)</strong></div>
+            </div>
+          </td>
+          <td>10 pcs</td>
+          <td class="right price-metro">€3.44/L</td>
+          <td class="right price-arfi">€6.80/L</td>
+          <td class="right"><span class="pct-badge green">−49%</span></td>
+          <td class="right savings-cell">€168</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="product-cell">
+              <div class="product-thumb"><img src="https://cdn.metro-group.com/de/de_pim_308947001001_01.png" alt=""></div>
+              <div class="product-label"><strong>Grilled Aubergines (2.4 kg)</strong></div>
+            </div>
+          </td>
+          <td>15 pcs</td>
+          <td class="right price-metro">€4.81/kg</td>
+          <td class="right price-arfi">€9.16/kg</td>
+          <td class="right"><span class="pct-badge green">−47%</span></td>
+          <td class="right savings-cell">€157</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="product-cell">
+              <div class="product-thumb"><img src="https://cdn.metro-group.com/de/de_pim_297091001001_01.png" alt=""></div>
+              <div class="product-label"><strong>Kalamon Olives (est. ~5 kg)</strong></div>
+            </div>
+          </td>
+          <td>3 pcs</td>
+          <td class="right price-metro">€5.52/kg</td>
+          <td class="right price-arfi">€13.40/kg</td>
+          <td class="right"><span class="pct-badge green">−59%</span></td>
+          <td class="right savings-cell">€118</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="product-cell">
+              <div class="product-thumb"><img src="https://cdn.metro-group.com/de/de_pim_279674001001_01.png" alt=""></div>
+              <div class="product-label"><strong>Olives with Peppers (10 kg)</strong></div>
+            </div>
+          </td>
+          <td>3 pcs</td>
+          <td class="right price-metro">€3.54/kg</td>
+          <td class="right price-arfi">€6.50/kg</td>
+          <td class="right"><span class="pct-badge green">−46%</span></td>
+          <td class="right savings-cell">€89</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="product-cell">
+              <div class="product-thumb"><img src="https://cdn.metro-group.com/de/de_pim_297095001001_02.png" alt=""></div>
+              <div class="product-label"><strong>Balsamic Borettane Onions</strong></div>
+            </div>
+          </td>
+          <td>18 pcs</td>
+          <td class="right price-metro">€4.39/L</td>
+          <td class="right price-arfi">€5.88/L</td>
+          <td class="right"><span class="pct-badge green">−25%</span></td>
+          <td class="right savings-cell">€45</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="product-cell">
+              <div class="product-thumb"><img src="https://cdn.metro-group.com/de/de_pim_296948001001_02.png" alt=""></div>
+              <div class="product-label"><strong>Artichoke Hearts (2.65 L)</strong></div>
+            </div>
+          </td>
+          <td>48 pcs</td>
+          <td class="right price-metro">€3.42/L</td>
+          <td class="right price-arfi">€3.77/L</td>
+          <td class="right"><span class="pct-badge green">−9%</span></td>
+          <td class="right savings-cell">€45</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="table-footer">
+      <span class="label">Total savings on these 8 products:</span>
+      <span class="value">€1,400</span>
+    </div>
+  </section>
+
+  <!-- SPOTLIGHT: Oliven alternative -->
+  <div class="spotlight">
+    <div class="spotlight-img">
+      <img src="https://cdn.metro-group.com/de/de_pim_32003001001_01.png" alt="Olives with Almonds">
+    </div>
+    <div class="spotlight-text">
+      <h3>Possible Alternative — Green Olives with Almonds</h3>
+      <p>Not a direct replacement for the Egemar Grilled Olives (€69.99), but could be worth trying as a premium option at a fraction of the price. 1.1 kg jar, €13.76/kg.</p>
+    </div>
+    <div class="spotlight-prices">
+      <div class="metro-price">€15.14</div>
+      <div class="vs-price">vs. Egemar <strong>€69.99</strong></div>
     </div>
   </div>
 
-  <!-- SECTION 1: METRO CHEAPER -->
-  <section class="section">
-    <div class="section-header">
-      <div class="section-icon metro">📉</div>
-      <div>
-        <div class="section-title">Metro is Cheaper</div>
-        <div class="section-count">9 products · Savings of 9% to 80%</div>
-      </div>
+  <!-- TABLE 2: ARFIYATO CHEAPER -->
+  <section class="data-section">
+    <div class="data-section-header">
+      <div class="section-dot amber"></div>
+      <h3>Arfiyato is Cheaper</h3>
+      <div class="count">4 products</div>
     </div>
 
-    <div class="product-grid">
-
-      <!-- 1. Weinblätter -->
-      <div class="product-card featured">
-        <div class="product-image">
-          <img src="https://cdn.metro-group.com/de/de_pim_36233001001_01.png" alt="Vine Leaves Palirria" loading="lazy">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Vine Leaves Palirria (2 kg)</div>
-          <div class="product-details">Stuffed vine leaves, ready to serve</div>
-          <div class="price-row">
-            <div class="price-block">
-              <div class="price-label">Metro</div>
-              <div class="price-value metro">€6.03/kg</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th class="right">Arfiyato</th>
+          <th class="right">Metro</th>
+          <th class="right">Diff</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="product-cell">
+              <div class="product-thumb"><span class="emoji">🫒</span></div>
+              <div class="product-label">
+                <strong>Green Olives with Garlic (10 kg)</strong>
+                <span class="note">Bulk bucket — no comparable Metro bulk size</span>
+              </div>
             </div>
-            <div class="price-block">
-              <div class="price-label">Arfiyato</div>
-              <div class="price-value strike">€30.00/kg</div>
+          </td>
+          <td class="right price-arfi-win">€6.50/kg</td>
+          <td class="right price-arfi">~€12–17/kg</td>
+          <td class="right"><span class="pct-badge amber">AF −63%</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="product-cell">
+              <div class="product-thumb"><img src="https://cdn.metro-group.com/de/de_pim_77187001001_02.png" alt=""></div>
+              <div class="product-label">
+                <strong>Tahini (4 kg bucket)</strong>
+                <span class="note">Metro only stocks Doyal in smaller packs</span>
+              </div>
             </div>
-            <span class="savings-badge green">↓ 80%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2. Riesenbohnen -->
-      <div class="product-card featured">
-        <div class="product-image">
-          <img src="https://cdn.metro-group.com/de/de_pim_36261001001_01.png" alt="Giant Beans Palirria" loading="lazy">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Giant Beans Palirria</div>
-          <div class="product-details">Gigantes — classic Greek side dish</div>
-          <div class="price-row">
-            <div class="price-block">
-              <div class="price-label">Metro</div>
-              <div class="price-value metro">€6.26/kg</div>
+          </td>
+          <td class="right price-arfi-win">€6.75/kg</td>
+          <td class="right price-arfi">€16.74/kg</td>
+          <td class="right"><span class="pct-badge amber">AF −60%</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="product-cell">
+              <div class="product-thumb"><img src="https://cdn.metro-group.com/de/de_pim_5607001001_01.png" alt=""></div>
+              <div class="product-label">
+                <strong>Whole Dried Chili (1 kg)</strong>
+                <span class="note">Metro: FUCHS €36/kg · Van Beekum €49/kg</span>
+              </div>
             </div>
-            <div class="price-block">
-              <div class="price-label">Arfiyato</div>
-              <div class="price-value strike">€25.00/kg</div>
+          </td>
+          <td class="right price-arfi-win">€19.99/kg</td>
+          <td class="right price-arfi">€36.36/kg</td>
+          <td class="right"><span class="pct-badge amber">AF −45%</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="product-cell">
+              <div class="product-thumb"><img src="https://cdn.metro-group.com/de/de_pim_31960001001_01.png" alt=""></div>
+              <div class="product-label">
+                <strong>Cream Cheese with Peppers (1.3 kg)</strong>
+              </div>
             </div>
-            <span class="savings-badge green">↓ 75%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3. Kalamon Oliven -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="https://cdn.metro-group.com/de/de_pim_297091001001_01.png" alt="Kalamon Olives" loading="lazy">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Kalamon Olives (METRO Chef 4.25L)</div>
-          <div class="product-details">€23.46 per can</div>
-          <div class="price-row">
-            <div class="price-block">
-              <div class="price-label">Metro</div>
-              <div class="price-value metro">€5.52/L</div>
-            </div>
-            <div class="price-block">
-              <div class="price-label">Arfiyato</div>
-              <div class="price-value strike">~€13.40/kg</div>
-            </div>
-            <span class="savings-badge green">↓ 59%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4. Paprikastreifen -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="https://cdn.metro-group.com/de/de_pim_287573001001_01.png" alt="Pepper Strips ARO" loading="lazy">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Pepper Strips (ARO 2.65L)</div>
-          <div class="product-details">Roasted red pepper strips</div>
-          <div class="price-row">
-            <div class="price-block">
-              <div class="price-label">Metro</div>
-              <div class="price-value metro">€2.41/L</div>
-            </div>
-            <div class="price-block">
-              <div class="price-label">Arfiyato</div>
-              <div class="price-value strike">€4.90/L</div>
-            </div>
-            <span class="savings-badge green">↓ 51%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5. Champignons -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="https://cdn.metro-group.com/de/de_pim_280714001001_01.png" alt="Mushrooms" loading="lazy">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Whole Button Mushrooms (METRO Chef 3.1L)</div>
-          <div class="product-details">Premium 1st choice · €10.66 per can</div>
-          <div class="price-row">
-            <div class="price-block">
-              <div class="price-label">Metro</div>
-              <div class="price-value metro">€3.44/L</div>
-            </div>
-            <div class="price-block">
-              <div class="price-label">Arfiyato</div>
-              <div class="price-value strike">€6.80/L</div>
-            </div>
-            <span class="savings-badge green">↓ 49%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 6. Gegrillte Auberginen -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="https://cdn.metro-group.com/de/de_pim_308947001001_01.png" alt="Grilled Aubergines" loading="lazy">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Grilled Aubergines (METRO Chef 1.6 kg)</div>
-          <div class="product-details">Chargrilled eggplant slices</div>
-          <div class="price-row">
-            <div class="price-block">
-              <div class="price-label">Metro</div>
-              <div class="price-value metro">€4.81/kg</div>
-            </div>
-            <div class="price-block">
-              <div class="price-label">Arfiyato</div>
-              <div class="price-value strike">€9.16/kg</div>
-            </div>
-            <span class="savings-badge green">↓ 47%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 7. Oliven mit Paprika -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="https://cdn.metro-group.com/de/de_pim_279674001001_01.png" alt="Olives with Peppers ARO" loading="lazy">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Olives with Peppers (ARO 935 ml)</div>
-          <div class="product-details">Green olives stuffed with sweet pepper</div>
-          <div class="price-row">
-            <div class="price-block">
-              <div class="price-label">Metro</div>
-              <div class="price-value metro">€3.54/kg</div>
-            </div>
-            <div class="price-block">
-              <div class="price-label">Arfiyato</div>
-              <div class="price-value strike">€6.50/kg</div>
-            </div>
-            <span class="savings-badge green">↓ 46%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 8. Balsamico-Zwiebeln -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="https://cdn.metro-group.com/de/de_pim_297095001001_02.png" alt="Borettane Onions" loading="lazy">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Balsamic Borettane Onions (METRO Chef 1.7L)</div>
-          <div class="product-details">Sweet pearl onions in balsamic glaze</div>
-          <div class="price-row">
-            <div class="price-block">
-              <div class="price-label">Metro</div>
-              <div class="price-value metro">€4.39/L</div>
-            </div>
-            <div class="price-block">
-              <div class="price-label">Arfiyato</div>
-              <div class="price-value strike">€5.88/L</div>
-            </div>
-            <span class="savings-badge green">↓ 25%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 9. Artischockenherzen -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="https://cdn.metro-group.com/de/de_pim_296948001001_02.png" alt="Artichoke Hearts" loading="lazy">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Artichoke Hearts (METRO Chef 2.65L)</div>
-          <div class="product-details">Quartered hearts in brine</div>
-          <div class="price-row">
-            <div class="price-block">
-              <div class="price-label">Metro</div>
-              <div class="price-value metro">€3.42/L</div>
-            </div>
-            <div class="price-block">
-              <div class="price-label">Arfiyato</div>
-              <div class="price-value strike">€3.77/L</div>
-            </div>
-            <span class="savings-badge green">↓ 9%</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
+          </td>
+          <td class="right price-arfi-win">€14.61/kg</td>
+          <td class="right price-arfi">€15.32/kg</td>
+          <td class="right"><span class="pct-badge amber">AF −5%</span></td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
-  <!-- SECTION 2: ARFIYATO CHEAPER -->
-  <section class="section">
-    <div class="section-header">
-      <div class="section-icon arfi">📊</div>
-      <div>
-        <div class="section-title">Arfiyato is Cheaper</div>
-        <div class="section-count">4 products · Bulk or specialty items</div>
-      </div>
+  <!-- TABLE 3: ARFIYATO EXCLUSIVE -->
+  <section class="data-section">
+    <div class="data-section-header">
+      <div class="section-dot gray"></div>
+      <h3>Arfiyato Only</h3>
+      <div class="count">6 products on this order · no direct Metro equivalent</div>
     </div>
 
-    <div class="product-grid">
-
-      <!-- 10. Tahini -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="https://cdn.metro-group.com/de/de_pim_77187001001_02.png" alt="Tahini comparison" loading="lazy">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Tahini (4 kg bucket)</div>
-          <div class="product-details">Metro only offers Doyal brand in smaller packs</div>
-          <div class="price-row">
-            <div class="price-block">
-              <div class="price-label">Arfiyato</div>
-              <div class="price-value arfi">€6.75/kg</div>
-            </div>
-            <div class="price-block">
-              <div class="price-label">Metro</div>
-              <div class="price-value strike">€16.74/kg</div>
-            </div>
-            <span class="savings-badge amber">Arfiyato ↓ 60%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 11. Grüne Oliven Knoblauch -->
-      <div class="product-card">
-        <div class="product-image">
-          <div class="placeholder-img">🫒</div>
-        </div>
-        <div class="product-info">
-          <div class="product-name">Green Olives with Garlic (10 kg)</div>
-          <div class="product-details">Bulk bucket — no comparable Metro bulk pack</div>
-          <div class="price-row">
-            <div class="price-block">
-              <div class="price-label">Arfiyato</div>
-              <div class="price-value arfi">€6.50/kg</div>
-            </div>
-            <div class="price-block">
-              <div class="price-label">Metro</div>
-              <div class="price-value strike">~€12–17/kg</div>
-            </div>
-            <span class="savings-badge amber">Arfiyato ↓ 63%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 12. Chili ganz -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="https://cdn.metro-group.com/de/de_pim_5607001001_01.png" alt="FUCHS Whole Chili" loading="lazy">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Whole Dried Chili (1 kg)</div>
-          <div class="product-details">Metro brands: FUCHS €36.36/kg · Van Beekum €49.30/kg</div>
-          <div class="price-row">
-            <div class="price-block">
-              <div class="price-label">Arfiyato</div>
-              <div class="price-value arfi">€19.99/kg</div>
-            </div>
-            <div class="price-block">
-              <div class="price-label">Metro</div>
-              <div class="price-value strike">€36.36/kg</div>
-            </div>
-            <span class="savings-badge amber">Arfiyato ↓ 45%</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 13. Frischkäse-Creme -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="https://cdn.metro-group.com/de/de_pim_31960001001_01.png" alt="Cream Cheese with Peppers" loading="lazy">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Cream Cheese with Peppers (1.3 kg)</div>
-          <div class="product-details">Metro Chef 1.1 kg comparable at slightly higher unit price</div>
-          <div class="price-row">
-            <div class="price-block">
-              <div class="price-label">Arfiyato</div>
-              <div class="price-value arfi">€14.61/kg</div>
-            </div>
-            <div class="price-block">
-              <div class="price-label">Metro</div>
-              <div class="price-value strike">€15.32/kg</div>
-            </div>
-            <span class="savings-badge amber">Arfiyato ↓ 5%</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SECTION 3: ARFIYATO EXCLUSIVE -->
-  <section class="section">
-    <div class="section-header">
-      <div class="section-icon exclusive">🔒</div>
-      <div>
-        <div class="section-title">Arfiyato Exclusive Items</div>
-        <div class="section-count">4 products · €120.96 per order · Some Metro alternatives exist</div>
-      </div>
-    </div>
-
-    <div class="product-grid">
-
-      <!-- 14. Gegrillte Oliven Egemar -->
-      <div class="product-card">
-        <div class="product-image">
-          <div class="placeholder-img">🫒</div>
-        </div>
-        <div class="product-info">
-          <div class="product-name">Grilled Olives Egemar</div>
-          <div class="product-details">Arfiyato exclusive · see Metro alternative above (Almond Olives €15.14)</div>
-          <div class="price-row">
-            <div class="price-block">
-              <div class="price-label">Arfiyato</div>
-              <div class="price-value arfi">€69.99</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 15. Pepper Drops Rot -->
-      <div class="product-card">
-        <div class="product-image">
-          <div class="placeholder-img">🫑</div>
-        </div>
-        <div class="product-info">
-          <div class="product-name">Pepper Drops Red (1.2 kg)</div>
-          <div class="product-details">No Metro equivalent found</div>
-          <div class="price-row">
-            <div class="price-block">
-              <div class="price-label">Arfiyato</div>
-              <div class="price-value arfi">€14.99</div>
-            </div>
-            <div class="price-block">
-              <div class="price-label">per kg</div>
-              <div class="price-value" style="color:var(--text-muted); font-size:1rem;">€12.49/kg</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 16. Pepper Drops Gelb -->
-      <div class="product-card">
-        <div class="product-image">
-          <div class="placeholder-img">🫑</div>
-        </div>
-        <div class="product-info">
-          <div class="product-name">Pepper Drops Yellow (1.2 kg)</div>
-          <div class="product-details">No Metro equivalent found</div>
-          <div class="price-row">
-            <div class="price-block">
-              <div class="price-label">Arfiyato</div>
-              <div class="price-value arfi">€15.99</div>
-            </div>
-            <div class="price-block">
-              <div class="price-label">per kg</div>
-              <div class="price-value" style="color:var(--text-muted); font-size:1rem;">€13.33/kg</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 17. Gefüllte Tomatenpaprika -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="https://cdn.metro-group.com/de/de_pim_297099001001_01.png" alt="Dried Tomatoes in Oil" loading="lazy">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Stuffed Tomato Peppers</div>
-          <div class="product-details">Metro alternative: Dried Tomatoes in Sunflower Oil 1.7L (€10.66)</div>
-          <div class="price-row">
-            <div class="price-block">
-              <div class="price-label">Arfiyato</div>
-              <div class="price-value arfi">€19.99</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Qty Ordered</th>
+          <th class="right">Unit Price</th>
+          <th class="right">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="product-cell"><div class="product-thumb"><span class="emoji">🫒</span></div><div class="product-label"><strong>Grilled Olives Egemar</strong></div></div></td>
+          <td>3 pcs</td>
+          <td class="right">€69.99</td>
+          <td class="right">€209.97</td>
+        </tr>
+        <tr>
+          <td><div class="product-cell"><div class="product-thumb"><span class="emoji">🫑</span></div><div class="product-label"><strong>Stuffed Tomato Peppers</strong></div></div></td>
+          <td>20 pcs</td>
+          <td class="right">€19.99</td>
+          <td class="right">€399.80</td>
+        </tr>
+        <tr>
+          <td><div class="product-cell"><div class="product-thumb"><span class="emoji">🫑</span></div><div class="product-label"><strong>Pepper Drops Red (1.2 kg)</strong></div></div></td>
+          <td>18 pcs</td>
+          <td class="right">€14.99</td>
+          <td class="right">€269.82</td>
+        </tr>
+        <tr>
+          <td><div class="product-cell"><div class="product-thumb"><span class="emoji">🫑</span></div><div class="product-label"><strong>Pepper Drops Yellow (1.2 kg)</strong></div></div></td>
+          <td>18 pcs</td>
+          <td class="right">€15.99</td>
+          <td class="right">€287.82</td>
+        </tr>
+        <tr>
+          <td><div class="product-cell"><div class="product-thumb"><span class="emoji">🫑</span></div><div class="product-label"><strong>Florini Peppers</strong></div></div></td>
+          <td>15 pcs</td>
+          <td class="right">€12.99</td>
+          <td class="right">€194.85</td>
+        </tr>
+        <tr>
+          <td><div class="product-cell"><div class="product-thumb"><img src="https://cdn.metro-group.com/de/de_pim_297099001001_01.png" alt=""></div><div class="product-label"><strong>Dried Tomatoes (7.5 kg bucket)</strong></div></div></td>
+          <td>1 pc</td>
+          <td class="right">€59.99</td>
+          <td class="right">€59.99</td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
   <!-- BOTTOM SUMMARY -->
   <div class="bottom-summary">
-    <h2>The Bottom Line</h2>
-    <p>Based on current catalog pricing across all comparable products</p>
-    <div class="summary-grid">
-      <div class="summary-item">
-        <div class="big green-glow">9 / 13</div>
-        <div class="desc">Products cheaper at Metro</div>
+    <h2>Summary — Order D-56065</h2>
+    <div class="summary-row">
+      <div class="summary-box">
+        <div class="num green">€1,400</div>
+        <div class="desc">Potential savings on<br>8 Metro-comparable products</div>
       </div>
-      <div class="summary-item">
-        <div class="big green-glow">~€170</div>
-        <div class="desc">Estimated savings<br>per order</div>
+      <div class="summary-box">
+        <div class="num blue">8 of 18</div>
+        <div class="desc">Products on this order<br>are cheaper at Metro</div>
       </div>
-      <div class="summary-item">
-        <div class="big blue-glow">€2,400+</div>
-        <div class="desc">Potential annual savings<br>(~14 orders/year)</div>
-      </div>
-      <div class="summary-item">
-        <div class="big gold-glow">4</div>
-        <div class="desc">Products where Arfiyato<br>wins on bulk pricing</div>
+      <div class="summary-box">
+        <div class="num gold">4</div>
+        <div class="desc">Products where Arfiyato<br>wins (bulk / specialty)</div>
       </div>
     </div>
   </div>
