@@ -17,6 +17,8 @@
   --blue-light: #E3F2FD;
   --mint: #00897B;
   --mint-light: #E0F2F1;
+  --baklava: #B8860B;
+  --baklava-light: #FFF3E0;
   --dark: #1A1A2E;
   --text: #2D3436;
   --muted: #636E72;
@@ -98,9 +100,7 @@ body {
   background: white;
   border-bottom: 1px solid #eee;
 }
-.kpi {
-  text-align: center;
-}
+.kpi { text-align: center; }
 .kpi .number {
   font-size: 2.2rem;
   font-weight: 800;
@@ -110,9 +110,9 @@ body {
 .kpi .number.green { color: var(--green); }
 .kpi .label {
   font-size: 0.8rem;
+  color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--muted);
   margin-top: 4px;
 }
 
@@ -126,8 +126,7 @@ body {
   font-family: 'Playfair Display', serif;
   font-size: 2rem;
   text-align: center;
-  margin-bottom: 12px;
-  color: var(--dark);
+  margin-bottom: 8px;
 }
 .section-subtitle {
   text-align: center;
@@ -138,34 +137,21 @@ body {
 
 /* SMOOTHIE CARDS */
 .smoothie-grid {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 28px;
 }
-
 .smoothie-card {
+  display: grid;
+  grid-template-columns: 1fr 340px;
   background: white;
   border-radius: 16px;
-  box-shadow: var(--card-shadow);
   overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  box-shadow: var(--card-shadow);
   transition: box-shadow 0.3s;
 }
 .smoothie-card:hover { box-shadow: var(--card-hover); }
-
-.card-left {
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.card-right {
-  padding: 28px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
+.card-left { padding: 32px; }
 .card-badge {
   display: inline-block;
   padding: 4px 14px;
@@ -174,105 +160,95 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-bottom: 10px;
-  width: fit-content;
+  margin-bottom: 12px;
 }
 .card-name {
   font-family: 'Playfair Display', serif;
   font-size: 1.8rem;
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 6px;
 }
 .card-desc {
   color: var(--muted);
   font-size: 0.9rem;
-  margin-bottom: 16px;
-  font-style: italic;
+  margin-bottom: 20px;
 }
-
 .ingredient-list {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
   margin-bottom: 16px;
 }
 .ingredient-list li {
-  background: #f5f5f5;
-  padding: 4px 12px;
-  border-radius: 50px;
-  font-size: 0.78rem;
-  color: var(--text);
-}
-
-.card-instruction {
+  background: #F5F6FA;
+  padding: 5px 12px;
+  border-radius: 6px;
   font-size: 0.82rem;
-  color: var(--muted);
-  border-top: 1px solid #eee;
-  padding-top: 12px;
-  margin-top: auto;
+  font-weight: 500;
 }
-.card-instruction strong { color: var(--text); }
-
-/* RIGHT PANEL — COSTS */
+.card-instruction {
+  background: #F8F9FA;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  color: #555;
+  line-height: 1.5;
+}
+.card-right { display: flex; align-items: stretch; }
 .cost-panel {
-  border-radius: 12px;
-  padding: 24px;
+  width: 100%;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .cost-row {
   display: flex;
   justify-content: space-between;
   padding: 6px 0;
-  font-size: 0.88rem;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+  font-size: 0.82rem;
 }
-.cost-row:last-child { border-bottom: none; }
 .cost-row .label { color: var(--muted); }
 .cost-row .value { font-weight: 600; }
-
 .price-suggest {
-  margin-top: 16px;
+  text-align: center;
   padding: 16px;
   border-radius: 10px;
-  text-align: center;
+  margin-top: 12px;
 }
 .price-suggest .price {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 800;
 }
 .price-suggest .sub {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
+  color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-top: 2px;
 }
-
 .margin-bar {
-  margin-top: 12px;
+  height: 6px;
   background: #eee;
-  border-radius: 50px;
-  height: 8px;
+  border-radius: 3px;
+  margin-top: 12px;
   overflow: hidden;
 }
-.margin-bar .fill {
-  height: 100%;
-  border-radius: 50px;
-  transition: width 0.5s;
-}
+.margin-bar .fill { height: 100%; border-radius: 3px; }
 .margin-info {
   display: flex;
   justify-content: space-between;
-  margin-top: 6px;
   font-size: 0.75rem;
   color: var(--muted);
+  margin-top: 6px;
 }
 
-/* COLOR THEMES */
-.theme-gold .card-badge { background: var(--gold-light); color: #E65100; }
-.theme-gold .card-name { color: #E65100; }
+/* THEME COLORS */
+.theme-gold .card-badge { background: var(--gold-light); color: var(--gold); }
+.theme-gold .card-name { color: #C68A00; }
 .theme-gold .cost-panel { background: var(--gold-light); }
-.theme-gold .price-suggest { background: rgba(242,169,0,0.15); }
-.theme-gold .price-suggest .price { color: #E65100; }
+.theme-gold .price-suggest { background: rgba(242,169,0,0.1); }
+.theme-gold .price-suggest .price { color: #C68A00; }
 .theme-gold .margin-bar .fill { background: var(--gold); }
 
 .theme-green .card-badge { background: var(--green-light); color: var(--green); }
@@ -302,6 +278,13 @@ body {
 .theme-mint .price-suggest { background: rgba(0,137,123,0.1); }
 .theme-mint .price-suggest .price { color: var(--mint); }
 .theme-mint .margin-bar .fill { background: var(--mint); }
+
+.theme-baklava .card-badge { background: var(--baklava-light); color: var(--baklava); }
+.theme-baklava .card-name { color: var(--baklava); }
+.theme-baklava .cost-panel { background: var(--baklava-light); }
+.theme-baklava .price-suggest { background: rgba(184,134,11,0.1); }
+.theme-baklava .price-suggest .price { color: var(--baklava); }
+.theme-baklava .margin-bar .fill { background: var(--baklava); }
 
 /* SUMMARY TABLE */
 .summary-table {
@@ -447,7 +430,9 @@ body {
 .dot-green { background: var(--green); }
 .dot-gold { background: var(--gold); }
 .dot-blue { background: var(--blue); }
+.dot-red { background: #E53935; }
 .shop-item.new-item { background: #FFF3CD; }
+.shop-item.amazon-item { background: #FFE0B2; }
 
 /* FOOTER */
 footer {
@@ -474,25 +459,25 @@ footer {
 <div class="hero">
   <div class="badge">New Menu Category</div>
   <h1>Greek <span>Smoothies</span></h1>
-  <p>5 signature smoothies inspired by Greek flavors — made with ingredients we already stock. Low food cost, high margins, zero waste.</p>
+  <p>6 signature smoothies inspired by Greek flavors — made with ingredients we already stock. Low food cost, high margins, zero waste.</p>
 </div>
 
 <!-- KPI BAR -->
 <div class="kpi-bar">
   <div class="kpi">
-    <div class="number">5</div>
+    <div class="number">6</div>
     <div class="label">New Smoothies</div>
   </div>
   <div class="kpi">
-    <div class="number gold">~€1.14</div>
+    <div class="number gold">~€1.16</div>
     <div class="label">Avg. Food Cost</div>
   </div>
   <div class="kpi">
-    <div class="number green">~16%</div>
+    <div class="number green">~16.6%</div>
     <div class="label">FC @ €6.99</div>
   </div>
   <div class="kpi">
-    <div class="number">2</div>
+    <div class="number">5</div>
     <div class="label">New Items to Order</div>
   </div>
 </div>
@@ -693,13 +678,52 @@ footer {
       </div>
     </div>
 
+    <!-- 6. BAKLAVA SHAKE -->
+    <div class="smoothie-card theme-baklava">
+      <div class="card-left">
+        <div class="card-badge">Dessert</div>
+        <div class="card-name">Baklava Shake</div>
+        <div class="card-desc">Like drinking Baklava — walnut, honey, cardamom bliss</div>
+        <ul class="ingredient-list">
+          <li>Greek Yoghurt 130g</li>
+          <li>Milk 100ml</li>
+          <li>Walnuts 20g</li>
+          <li>Dates (pitted) 35g</li>
+          <li>Honey 10g</li>
+          <li>Cinnamon 2g</li>
+          <li>Cardamom 1g</li>
+          <li>Ice 80g</li>
+        </ul>
+        <div class="card-instruction">
+          <strong>Prep:</strong> Blend walnuts + dates first with milk (10 sec pulse). Then add yoghurt, spices, ice. Blend until smooth. Drizzle honey on top.
+        </div>
+      </div>
+      <div class="card-right">
+        <div class="cost-panel">
+          <div class="cost-row"><span class="label">Yoghurt (Kløver)</span><span class="value">€0.345</span></div>
+          <div class="cost-row"><span class="label">Milk (Arla)</span><span class="value">€0.130</span></div>
+          <div class="cost-row"><span class="label">Walnuts (ARO)</span><span class="value">€0.322</span></div>
+          <div class="cost-row"><span class="label">Dates (MC)</span><span class="value">€0.296</span></div>
+          <div class="cost-row"><span class="label">Honey + Cinnamon + Cardamom</span><span class="value">€0.129</span></div>
+          <div class="cost-row"><span class="label">Cup & Lid</span><span class="value">€0.042</span></div>
+          <div class="cost-row" style="font-weight:700;border-top:2px solid rgba(0,0,0,0.1)"><span>Total Food Cost</span><span>€1.26</span></div>
+          <div class="price-suggest">
+            <div class="price">€6.99</div>
+            <div class="sub">Suggested Selling Price</div>
+          </div>
+          <div class="margin-bar"><div class="fill" style="width:82%"></div></div>
+          <div class="margin-info"><span>FC 18.1%</span><span>Margin €5.73</span></div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <!-- SUMMARY -->
 <div class="section" style="padding-top:20px">
   <h2 class="section-title">Numbers at a Glance</h2>
-  <p class="section-subtitle">All 5 smoothies compared — all prices netto (excl. VAT)</p>
+  <p class="section-subtitle">All 6 smoothies compared — all prices netto (excl. VAT)</p>
 
   <table class="summary-table">
     <thead>
@@ -717,7 +741,8 @@ footer {
       <tr><td>Choco Halva</td><td>€1.12</td><td><span class="fc-badge fc-green">16.0%</span></td><td>€5.87</td><td>Upsell favorite</td></tr>
       <tr><td>The Zeus</td><td>€1.04</td><td><span class="fc-badge fc-green">14.9%</span></td><td>€5.95</td><td>Best margin</td></tr>
       <tr><td>Mykonos Mint</td><td>€1.23</td><td><span class="fc-badge fc-green">17.6%</span></td><td>€5.76</td><td>Summer hit</td></tr>
-      <tr><td>Average</td><td>€1.14</td><td><span class="fc-badge fc-green">16.3%</span></td><td>€5.85</td><td></td></tr>
+      <tr><td>Baklava Shake</td><td>€1.26</td><td><span class="fc-badge fc-green">18.1%</span></td><td>€5.73</td><td>Dessert classic</td></tr>
+      <tr><td>Average</td><td>€1.16</td><td><span class="fc-badge fc-green">16.6%</span></td><td>€5.83</td><td></td></tr>
     </tbody>
   </table>
 
@@ -728,20 +753,20 @@ footer {
       <div class="proposal-option">
         <div class="opt-price">€5.99</div>
         <div class="opt-label">Budget Option</div>
-        <div class="opt-margin" style="color:var(--green)">Margin €4.85</div>
-        <div class="opt-fc">FC 19.0% · Below Fruit Smoothies</div>
+        <div class="opt-margin" style="color:var(--green)">Margin €4.83</div>
+        <div class="opt-fc">FC 19.4% · Below Fruit Smoothies</div>
       </div>
       <div class="proposal-option recommended">
         <div class="opt-price">€6.99</div>
         <div class="opt-label">Match Fruit Smoothies</div>
-        <div class="opt-margin" style="color:var(--green)">Margin €5.85</div>
-        <div class="opt-fc">FC 16.3% · Same as current menu</div>
+        <div class="opt-margin" style="color:var(--green)">Margin €5.83</div>
+        <div class="opt-fc">FC 16.6% · Same as current menu</div>
       </div>
       <div class="proposal-option">
         <div class="opt-price">€7.49</div>
         <div class="opt-label">Premium Greek Line</div>
-        <div class="opt-margin" style="color:var(--green)">Margin €6.35</div>
-        <div class="opt-fc">FC 15.2% · Between Fruit & Protein</div>
+        <div class="opt-margin" style="color:var(--green)">Margin €6.33</div>
+        <div class="opt-fc">FC 15.5% · Between Fruit & Protein</div>
       </div>
     </div>
     <p style="color:var(--muted);font-size:0.85rem;text-align:center;">Current menu: Fruit Smoothies €6.99 · Protein Smoothies €7.99 · Fresh Juices €6.99</p>
@@ -750,10 +775,13 @@ footer {
   <!-- SHOPPING LIST -->
   <div class="shopping-section">
     <h3>What You Need to Order</h3>
-    <p style="color:var(--muted);font-size:0.88rem;margin-bottom:20px;">Almost everything is already in stock. Only 2 new items needed.</p>
+    <p style="color:var(--muted);font-size:0.88rem;margin-bottom:20px;">Most ingredients already in stock. 5 new items needed (4 Metro + 1 Amazon).</p>
     <div class="shop-grid">
-      <div class="shop-item new-item"><span class="dot dot-gold"></span><strong>NEW:</strong>&nbsp;MC Kakao Pulver 1kg — €17.43</div>
-      <div class="shop-item new-item"><span class="dot dot-gold"></span><strong>NEW:</strong>&nbsp;MC Blattspinat TK 1kg — €2.13</div>
+      <div class="shop-item new-item"><span class="dot dot-gold"></span><strong>NEW:</strong>&nbsp;MC Kakao Pulver 1kg — €17.43 (Metro)</div>
+      <div class="shop-item new-item"><span class="dot dot-gold"></span><strong>NEW:</strong>&nbsp;MC Blattspinat TK 1kg — €2.13 (Metro)</div>
+      <div class="shop-item new-item"><span class="dot dot-gold"></span><strong>NEW:</strong>&nbsp;ARO Walnusskerne 750g — €12.09 (Metro)</div>
+      <div class="shop-item new-item"><span class="dot dot-gold"></span><strong>NEW:</strong>&nbsp;MC Datteln entsteint 1kg — €8.46 (Metro)</div>
+      <div class="shop-item amazon-item"><span class="dot dot-red"></span><strong>NEW:</strong>&nbsp;Kardamom gemahlen 500g — €20.51 (Amazon netto)</div>
       <div class="shop-item"><span class="dot dot-green"></span>Yoghurt Kløver 5kg — Arla (in stock)</div>
       <div class="shop-item"><span class="dot dot-green"></span>TK-Mango 1kg — Metro (in stock)</div>
       <div class="shop-item"><span class="dot dot-green"></span>TK-Ananas 1kg — Metro (in stock)</div>
@@ -763,6 +791,7 @@ footer {
       <div class="shop-item"><span class="dot dot-green"></span>Bio Ginger 200g — Metro (in stock)</div>
       <div class="shop-item"><span class="dot dot-green"></span>Cucumbers 10kg — Metro (in stock)</div>
       <div class="shop-item"><span class="dot dot-green"></span>Apples Elstar 10kg — Metro (in stock)</div>
+      <div class="shop-item"><span class="dot dot-green"></span>Cinnamon MC 400g — Metro (in stock)</div>
       <div class="shop-item"><span class="dot dot-green"></span>Lemon/Lime Juice — Metro (in stock)</div>
       <div class="shop-item"><span class="dot dot-blue"></span>Fresh Mint — buy weekly from market</div>
       <div class="shop-item"><span class="dot dot-green"></span>Cups 16oz PET — eco life (in stock)</div>
@@ -771,7 +800,8 @@ footer {
 </div>
 
 <footer>
-  All prices netto (excl. VAT) · Ingredient prices from actual supplier invoices · Metro Lieferservice Gastronomie Saarbrücken · Arla Foods · Transgourmet · Arfiyato Feinkost · eco life · March 2026<br>
+  All prices netto (excl. VAT) · Metro Lieferservice Gastronomie Saarbrücken · Arla Foods · Transgourmet · Arfiyato Feinkost · eco life · Hanse&Pepper (Amazon) · March 2026<br>
+  Kardamom: Amazon netto price (€21.95 brutto ÷ 1.07 MwSt = €20.51 netto / 500g = €41.03/kg) — not available on Metro Lieferservice<br>
   Spudz Greek Street Food
 </footer>
 
