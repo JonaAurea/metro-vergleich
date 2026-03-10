@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spudz Greek Smoothies — New Menu Pitch</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #F2A900;
+  --gold-light: #FFF8E1;
+  --green: #2E7D32;
+  --green-light: #E8F5E9;
+  --choco: #5D4037;
+  --choco-light: #EFEBE9;
+  --blue: #1565C0;
+  --blue-light: #E3F2FD;
+  --mint: #00897B;
+  --mint-light: #E0F2F1;
+  --dark: #1A1A2E;
+  --text: #2D3436;
+  --muted: #636E72;
+  --light-bg: #FAFBFC;
+  --card-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  --card-hover: 0 8px 40px rgba(0,0,0,0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: var(--text);
+  background: var(--light-bg);
+  line-height: 1.6;
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, var(--dark) 0%, #16213E 50%, #0F3460 100%);
+  color: white;
+  padding: 80px 40px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 70%, rgba(242,169,0,0.15) 0%, transparent 50%),
+              radial-gradient(circle at 70% 30%, rgba(0,137,123,0.1) 0%, transparent 50%);
+  animation: float 20s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-20px, -20px); }
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  position: relative;
+  margin-bottom: 12px;
+}
+.hero h1 span { color: var(--gold); }
+.hero p {
+  font-size: 1.15rem;
+  font-weight: 300;
+  opacity: 0.85;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+.hero .badge {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--dark);
+  padding: 6px 20px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* KPI BAR */
+.kpi-bar {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  padding: 40px 20px;
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+.kpi {
+  text-align: center;
+}
+.kpi .number {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--dark);
+}
+.kpi .number.gold { color: var(--gold); }
+.kpi .number.green { color: var(--green); }
+.kpi .label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* SECTION */
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 12px;
+  color: var(--dark);
+}
+.section-subtitle {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 40px;
+  font-size: 0.95rem;
+}
+
+/* SMOOTHIE CARDS */
+.smoothie-grid {
+  display: grid;
+  gap: 28px;
+}
+
+.smoothie-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  transition: box-shadow 0.3s;
+}
+.smoothie-card:hover { box-shadow: var(--card-hover); }
+
+.card-left {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.card-right {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  width: fit-content;
+}
+.card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.card-desc {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.ingredient-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.ingredient-list li {
+  background: #f5f5f5;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  color: var(--text);
+}
+
+.card-instruction {
+  font-size: 0.82rem;
+  color: var(--muted);
+  border-top: 1px solid #eee;
+  padding-top: 12px;
+  margin-top: auto;
+}
+.card-instruction strong { color: var(--text); }
+
+/* RIGHT PANEL — COSTS */
+.cost-panel {
+  border-radius: 12px;
+  padding: 24px;
+}
+.cost-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 0.88rem;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.cost-row:last-child { border-bottom: none; }
+.cost-row .label { color: var(--muted); }
+.cost-row .value { font-weight: 600; }
+
+.price-suggest {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 10px;
+  text-align: center;
+}
+.price-suggest .price {
+  font-size: 2rem;
+  font-weight: 800;
+}
+.price-suggest .sub {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+.margin-bar {
+  margin-top: 12px;
+  background: #eee;
+  border-radius: 50px;
+  height: 8px;
+  overflow: hidden;
+}
+.margin-bar .fill {
+  height: 100%;
+  border-radius: 50px;
+  transition: width 0.5s;
+}
+.margin-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* COLOR THEMES */
+.theme-gold .card-badge { background: var(--gold-light); color: #E65100; }
+.theme-gold .card-name { color: #E65100; }
+.theme-gold .cost-panel { background: var(--gold-light); }
+.theme-gold .price-suggest { background: rgba(242,169,0,0.15); }
+.theme-gold .price-suggest .price { color: #E65100; }
+.theme-gold .margin-bar .fill { background: var(--gold); }
+
+.theme-green .card-badge { background: var(--green-light); color: var(--green); }
+.theme-green .card-name { color: var(--green); }
+.theme-green .cost-panel { background: var(--green-light); }
+.theme-green .price-suggest { background: rgba(46,125,50,0.1); }
+.theme-green .price-suggest .price { color: var(--green); }
+.theme-green .margin-bar .fill { background: var(--green); }
+
+.theme-choco .card-badge { background: var(--choco-light); color: var(--choco); }
+.theme-choco .card-name { color: var(--choco); }
+.theme-choco .cost-panel { background: var(--choco-light); }
+.theme-choco .price-suggest { background: rgba(93,64,55,0.1); }
+.theme-choco .price-suggest .price { color: var(--choco); }
+.theme-choco .margin-bar .fill { background: var(--choco); }
+
+.theme-blue .card-badge { background: var(--blue-light); color: var(--blue); }
+.theme-blue .card-name { color: var(--blue); }
+.theme-blue .cost-panel { background: var(--blue-light); }
+.theme-blue .price-suggest { background: rgba(21,101,192,0.1); }
+.theme-blue .price-suggest .price { color: var(--blue); }
+.theme-blue .margin-bar .fill { background: var(--blue); }
+
+.theme-mint .card-badge { background: var(--mint-light); color: var(--mint); }
+.theme-mint .card-name { color: var(--mint); }
+.theme-mint .cost-panel { background: var(--mint-light); }
+.theme-mint .price-suggest { background: rgba(0,137,123,0.1); }
+.theme-mint .price-suggest .price { color: var(--mint); }
+.theme-mint .margin-bar .fill { background: var(--mint); }
+
+/* SUMMARY TABLE */
+.summary-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+.summary-table th {
+  background: var(--dark);
+  color: white;
+  padding: 14px 20px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+.summary-table th:first-child { text-align: left; }
+.summary-table td {
+  padding: 14px 20px;
+  text-align: center;
+  background: white;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.92rem;
+}
+.summary-table td:first-child {
+  text-align: left;
+  font-weight: 600;
+}
+.summary-table tr:last-child td {
+  background: #f8f9fa;
+  font-weight: 700;
+}
+.fc-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.fc-green { background: #D4EDDA; color: #155724; }
+
+/* PROPOSAL */
+.proposal-box {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: var(--card-shadow);
+  margin-top: 40px;
+}
+.proposal-box h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--dark);
+}
+.proposal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.proposal-option {
+  border: 2px solid #eee;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  transition: all 0.3s;
+}
+.proposal-option.recommended {
+  border-color: var(--gold);
+  background: var(--gold-light);
+  position: relative;
+}
+.proposal-option.recommended::before {
+  content: 'RECOMMENDED';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: var(--dark);
+  padding: 2px 14px;
+  border-radius: 50px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+.proposal-option .opt-price {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--dark);
+}
+.proposal-option .opt-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.proposal-option .opt-margin {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 8px;
+}
+.proposal-option .opt-fc {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* SHOPPING LIST */
+.shopping-section {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: var(--card-shadow);
+  margin-top: 28px;
+}
+.shopping-section h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+}
+.shop-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.shop-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+}
+.shop-item .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.dot-green { background: var(--green); }
+.dot-gold { background: var(--gold); }
+.dot-blue { background: var(--blue); }
+.shop-item.new-item { background: #FFF3CD; }
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  border-top: 1px solid #eee;
+  margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2.2rem; }
+  .kpi-bar { flex-wrap: wrap; gap: 30px; }
+  .smoothie-card { grid-template-columns: 1fr; }
+  .proposal-grid { grid-template-columns: 1fr; }
+  .shop-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">New Menu Category</div>
+  <h1>Greek <span>Smoothies</span></h1>
+  <p>5 signature smoothies inspired by Greek flavors — made with ingredients we already stock. Low food cost, high margins, zero waste.</p>
+</div>
+
+<!-- KPI BAR -->
+<div class="kpi-bar">
+  <div class="kpi">
+    <div class="number">5</div>
+    <div class="label">New Smoothies</div>
+  </div>
+  <div class="kpi">
+    <div class="number gold">~€1.14</div>
+    <div class="label">Avg. Food Cost</div>
+  </div>
+  <div class="kpi">
+    <div class="number green">~16%</div>
+    <div class="label">FC @ €6.99</div>
+  </div>
+  <div class="kpi">
+    <div class="number">2</div>
+    <div class="label">New Items to Order</div>
+  </div>
+</div>
+
+<!-- SMOOTHIES -->
+<div class="section">
+  <h2 class="section-title">The Menu</h2>
+  <p class="section-subtitle">Each smoothie 0.4L — served in 16oz PET cup</p>
+
+  <div class="smoothie-grid">
+
+    <!-- 1. SANTORINI GOLD -->
+    <div class="smoothie-card theme-gold">
+      <div class="card-left">
+        <div class="card-badge">Tropical</div>
+        <div class="card-name">Santorini Gold</div>
+        <div class="card-desc">Exotic tropical, sharp-sweet, vibrant yellow</div>
+        <ul class="ingredient-list">
+          <li>Greek Yoghurt 120g</li>
+          <li>Milk 80ml</li>
+          <li>Frozen Mango 80g</li>
+          <li>Frozen Pineapple 60g</li>
+          <li>Fresh Ginger 5g</li>
+          <li>Lemon Juice 15ml</li>
+          <li>Honey 10g</li>
+          <li>Ice 80g</li>
+        </ul>
+        <div class="card-instruction">
+          <strong>Prep:</strong> Grate ginger fresh (5g = ~1cm piece). Mango + Pineapple from freezer. Blend 30-45 sec on high.
+        </div>
+      </div>
+      <div class="card-right">
+        <div class="cost-panel">
+          <div class="cost-row"><span class="label">Yoghurt (Kløver)</span><span class="value">€0.318</span></div>
+          <div class="cost-row"><span class="label">Milk (Arla)</span><span class="value">€0.104</span></div>
+          <div class="cost-row"><span class="label">TK-Mango</span><span class="value">€0.360</span></div>
+          <div class="cost-row"><span class="label">TK-Pineapple</span><span class="value">€0.211</span></div>
+          <div class="cost-row"><span class="label">Ginger + Lemon + Honey</span><span class="value">€0.147</span></div>
+          <div class="cost-row"><span class="label">Cup & Lid</span><span class="value">€0.042</span></div>
+          <div class="cost-row" style="font-weight:700;border-top:2px solid rgba(0,0,0,0.1)"><span>Total Food Cost</span><span>€1.18</span></div>
+          <div class="price-suggest">
+            <div class="price">€6.99</div>
+            <div class="sub">Suggested Selling Price</div>
+          </div>
+          <div class="margin-bar"><div class="fill" style="width:83%"></div></div>
+          <div class="margin-info"><span>FC 16.9%</span><span>Margin €5.81</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. KRETA GREEN -->
+    <div class="smoothie-card theme-green">
+      <div class="card-left">
+        <div class="card-badge">Healthy</div>
+        <div class="card-name">Kreta Green</div>
+        <div class="card-desc">Green, fresh, light & healthy</div>
+        <ul class="ingredient-list">
+          <li>Greek Yoghurt 120g</li>
+          <li>Milk 60ml</li>
+          <li>Frozen Spinach 40g</li>
+          <li>Cucumber 60g</li>
+          <li>Apple 60g</li>
+          <li>Fresh Mint 5g</li>
+          <li>Lime Juice 15ml</li>
+          <li>Honey 8g</li>
+          <li>Ice 80g</li>
+        </ul>
+        <div class="card-instruction">
+          <strong>Prep:</strong> Peel & deseed cucumber. Core apple. TK-Spinat portioniert = easy 40g grab. Mint leaves only (strip from stem).
+        </div>
+      </div>
+      <div class="card-right">
+        <div class="cost-panel">
+          <div class="cost-row"><span class="label">Yoghurt (Kløver)</span><span class="value">€0.318</span></div>
+          <div class="cost-row"><span class="label">Milk (Arla)</span><span class="value">€0.078</span></div>
+          <div class="cost-row"><span class="label">TK-Spinach + Cucumber + Apple</span><span class="value">€0.349</span></div>
+          <div class="cost-row"><span class="label">Mint + Lime + Honey</span><span class="value">€0.335</span></div>
+          <div class="cost-row"><span class="label">Cup & Lid</span><span class="value">€0.042</span></div>
+          <div class="cost-row" style="font-weight:700;border-top:2px solid rgba(0,0,0,0.1)"><span>Total Food Cost</span><span>€1.12</span></div>
+          <div class="price-suggest">
+            <div class="price">€6.99</div>
+            <div class="sub">Suggested Selling Price</div>
+          </div>
+          <div class="margin-bar"><div class="fill" style="width:84%"></div></div>
+          <div class="margin-info"><span>FC 16.0%</span><span>Margin €5.87</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. CHOCO HALVA -->
+    <div class="smoothie-card theme-choco">
+      <div class="card-left">
+        <div class="card-badge">Indulgent</div>
+        <div class="card-name">Choco Halva</div>
+        <div class="card-desc">Tastes like liquid Halva — indulgent & nutty</div>
+        <ul class="ingredient-list">
+          <li>Greek Yoghurt 120g</li>
+          <li>Milk 100ml</li>
+          <li>Frozen Banana 80g</li>
+          <li>Cocoa Powder 12g</li>
+          <li>Tahini 20g</li>
+          <li>Honey 15g</li>
+          <li>Ice 80g</li>
+        </ul>
+        <div class="card-instruction">
+          <strong>Prep:</strong> Add cocoa to liquid first (avoids clumps). Stir tahini jar before measuring. Richest smoothie — great for upselling.
+        </div>
+      </div>
+      <div class="card-right">
+        <div class="cost-panel">
+          <div class="cost-row"><span class="label">Yoghurt (Kløver)</span><span class="value">€0.318</span></div>
+          <div class="cost-row"><span class="label">Milk (Arla)</span><span class="value">€0.130</span></div>
+          <div class="cost-row"><span class="label">TK-Banana</span><span class="value">€0.200</span></div>
+          <div class="cost-row"><span class="label">Cocoa + Tahini + Honey</span><span class="value">€0.433</span></div>
+          <div class="cost-row"><span class="label">Cup & Lid</span><span class="value">€0.042</span></div>
+          <div class="cost-row" style="font-weight:700;border-top:2px solid rgba(0,0,0,0.1)"><span>Total Food Cost</span><span>€1.12</span></div>
+          <div class="price-suggest">
+            <div class="price">€6.99</div>
+            <div class="sub">Suggested Selling Price</div>
+          </div>
+          <div class="margin-bar"><div class="fill" style="width:84%"></div></div>
+          <div class="margin-info"><span>FC 16.0%</span><span>Margin €5.87</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. THE ZEUS -->
+    <div class="smoothie-card theme-blue">
+      <div class="card-left">
+        <div class="card-badge">Power</div>
+        <div class="card-name">The Zeus</div>
+        <div class="card-desc">Power smoothie — Tahini, banana, honey, cinnamon</div>
+        <ul class="ingredient-list">
+          <li>Greek Yoghurt 130g</li>
+          <li>Milk 100ml</li>
+          <li>Frozen Banana 100g</li>
+          <li>Tahini 25g</li>
+          <li>Honey 15g</li>
+          <li>Cinnamon 2g</li>
+          <li>Ice 60g</li>
+        </ul>
+        <div class="card-instruction">
+          <strong>Prep:</strong> Simplest recipe — fewest ingredients. Pinch of cinnamon on top as garnish. Extra banana = thicker.
+        </div>
+      </div>
+      <div class="card-right">
+        <div class="cost-panel">
+          <div class="cost-row"><span class="label">Yoghurt (Kløver)</span><span class="value">€0.345</span></div>
+          <div class="cost-row"><span class="label">Milk (Arla)</span><span class="value">€0.130</span></div>
+          <div class="cost-row"><span class="label">TK-Banana</span><span class="value">€0.250</span></div>
+          <div class="cost-row"><span class="label">Tahini + Honey + Cinnamon</span><span class="value">€0.277</span></div>
+          <div class="cost-row"><span class="label">Cup & Lid</span><span class="value">€0.042</span></div>
+          <div class="cost-row" style="font-weight:700;border-top:2px solid rgba(0,0,0,0.1)"><span>Total Food Cost</span><span>€1.04</span></div>
+          <div class="price-suggest">
+            <div class="price">€6.99</div>
+            <div class="sub">Suggested Selling Price</div>
+          </div>
+          <div class="margin-bar"><div class="fill" style="width:85%"></div></div>
+          <div class="margin-info"><span>FC 14.9%</span><span>Margin €5.95</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. MYKONOS MINT -->
+    <div class="smoothie-card theme-mint">
+      <div class="card-left">
+        <div class="card-badge">Refreshing</div>
+        <div class="card-name">Mykonos Mint</div>
+        <div class="card-desc">Cool, clean, refreshing — like a Greek spa</div>
+        <ul class="ingredient-list">
+          <li>Greek Yoghurt 130g</li>
+          <li>Milk 80ml</li>
+          <li>Cucumber 80g</li>
+          <li>Fresh Mint 8g</li>
+          <li>Honey 12g</li>
+          <li>Lime Juice 15ml</li>
+          <li>Ice 100g</li>
+        </ul>
+        <div class="card-instruction">
+          <strong>Prep:</strong> Use generous mint (8g = ~12 leaves). Cucumber must be peeled. Most refreshing option — great for summer!
+        </div>
+      </div>
+      <div class="card-right">
+        <div class="cost-panel">
+          <div class="cost-row"><span class="label">Yoghurt (Kløver)</span><span class="value">€0.345</span></div>
+          <div class="cost-row"><span class="label">Milk (Arla)</span><span class="value">€0.104</span></div>
+          <div class="cost-row"><span class="label">Cucumber</span><span class="value">€0.229</span></div>
+          <div class="cost-row"><span class="label">Mint + Lime + Honey</span><span class="value">€0.509</span></div>
+          <div class="cost-row"><span class="label">Cup & Lid</span><span class="value">€0.042</span></div>
+          <div class="cost-row" style="font-weight:700;border-top:2px solid rgba(0,0,0,0.1)"><span>Total Food Cost</span><span>€1.23</span></div>
+          <div class="price-suggest">
+            <div class="price">€6.99</div>
+            <div class="sub">Suggested Selling Price</div>
+          </div>
+          <div class="margin-bar"><div class="fill" style="width:82%"></div></div>
+          <div class="margin-info"><span>FC 17.6%</span><span>Margin €5.76</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="section" style="padding-top:20px">
+  <h2 class="section-title">Numbers at a Glance</h2>
+  <p class="section-subtitle">All 5 smoothies compared — all prices netto (excl. VAT)</p>
+
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th>Smoothie</th>
+        <th>Food Cost</th>
+        <th>FC %</th>
+        <th>Margin</th>
+        <th>Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Santorini Gold</td><td>€1.18</td><td><span class="fc-badge fc-green">16.9%</span></td><td>€5.81</td><td>Best-seller potential</td></tr>
+      <tr><td>Kreta Green</td><td>€1.12</td><td><span class="fc-badge fc-green">16.0%</span></td><td>€5.87</td><td>Health trend</td></tr>
+      <tr><td>Choco Halva</td><td>€1.12</td><td><span class="fc-badge fc-green">16.0%</span></td><td>€5.87</td><td>Upsell favorite</td></tr>
+      <tr><td>The Zeus</td><td>€1.04</td><td><span class="fc-badge fc-green">14.9%</span></td><td>€5.95</td><td>Best margin</td></tr>
+      <tr><td>Mykonos Mint</td><td>€1.23</td><td><span class="fc-badge fc-green">17.6%</span></td><td>€5.76</td><td>Summer hit</td></tr>
+      <tr><td>Average</td><td>€1.14</td><td><span class="fc-badge fc-green">16.3%</span></td><td>€5.85</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <!-- PRICING PROPOSAL -->
+  <div class="proposal-box">
+    <h3>Pricing Proposal</h3>
+    <div class="proposal-grid">
+      <div class="proposal-option">
+        <div class="opt-price">€5.99</div>
+        <div class="opt-label">Budget Option</div>
+        <div class="opt-margin" style="color:var(--green)">Margin €4.85</div>
+        <div class="opt-fc">FC 19.0% · Below Fruit Smoothies</div>
+      </div>
+      <div class="proposal-option recommended">
+        <div class="opt-price">€6.99</div>
+        <div class="opt-label">Match Fruit Smoothies</div>
+        <div class="opt-margin" style="color:var(--green)">Margin €5.85</div>
+        <div class="opt-fc">FC 16.3% · Same as current menu</div>
+      </div>
+      <div class="proposal-option">
+        <div class="opt-price">€7.49</div>
+        <div class="opt-label">Premium Greek Line</div>
+        <div class="opt-margin" style="color:var(--green)">Margin €6.35</div>
+        <div class="opt-fc">FC 15.2% · Between Fruit & Protein</div>
+      </div>
+    </div>
+    <p style="color:var(--muted);font-size:0.85rem;text-align:center;">Current menu: Fruit Smoothies €6.99 · Protein Smoothies €7.99 · Fresh Juices €6.99</p>
+  </div>
+
+  <!-- SHOPPING LIST -->
+  <div class="shopping-section">
+    <h3>What You Need to Order</h3>
+    <p style="color:var(--muted);font-size:0.88rem;margin-bottom:20px;">Almost everything is already in stock. Only 2 new items needed.</p>
+    <div class="shop-grid">
+      <div class="shop-item new-item"><span class="dot dot-gold"></span><strong>NEW:</strong>&nbsp;MC Kakao Pulver 1kg — €17.43</div>
+      <div class="shop-item new-item"><span class="dot dot-gold"></span><strong>NEW:</strong>&nbsp;MC Blattspinat TK 1kg — €2.13</div>
+      <div class="shop-item"><span class="dot dot-green"></span>Yoghurt Kløver 5kg — Arla (in stock)</div>
+      <div class="shop-item"><span class="dot dot-green"></span>TK-Mango 1kg — Metro (in stock)</div>
+      <div class="shop-item"><span class="dot dot-green"></span>TK-Ananas 1kg — Metro (in stock)</div>
+      <div class="shop-item"><span class="dot dot-green"></span>TK-Banana 10kg — Transgourmet (in stock)</div>
+      <div class="shop-item"><span class="dot dot-green"></span>Tahini Daabool 4kg — Arfiyato (in stock)</div>
+      <div class="shop-item"><span class="dot dot-green"></span>Honey ARO 2.5kg — Metro (in stock)</div>
+      <div class="shop-item"><span class="dot dot-green"></span>Bio Ginger 200g — Metro (in stock)</div>
+      <div class="shop-item"><span class="dot dot-green"></span>Cucumbers 10kg — Metro (in stock)</div>
+      <div class="shop-item"><span class="dot dot-green"></span>Apples Elstar 10kg — Metro (in stock)</div>
+      <div class="shop-item"><span class="dot dot-green"></span>Lemon/Lime Juice — Metro (in stock)</div>
+      <div class="shop-item"><span class="dot dot-blue"></span>Fresh Mint — buy weekly from market</div>
+      <div class="shop-item"><span class="dot dot-green"></span>Cups 16oz PET — eco life (in stock)</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  All prices netto (excl. VAT) · Ingredient prices from actual supplier invoices · Metro Lieferservice Gastronomie Saarbrücken · Arla Foods · Transgourmet · Arfiyato Feinkost · eco life · March 2026<br>
+  Spudz Greek Street Food
+</footer>
+
+</body>
+</html>
